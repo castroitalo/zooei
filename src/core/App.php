@@ -28,11 +28,19 @@ class App
     public RouterCore $router;
 
     /**
+     * App's session
+     *
+     * @var SessionCore
+     */
+    public SessionCore $session;
+
+    /**
      * App constructor
      */
     public function __construct()
     {
         $this->databaseConnection = DatabaseCore::getDatabaseConnection();
         $this->router = new RouterCore();
+        $this->session = new SessionCore();
     }
 }

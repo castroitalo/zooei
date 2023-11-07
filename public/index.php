@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -9,7 +9,9 @@ require_once __DIR__ . "/bootstrap.php";
 
 $app = new App();
 
-$app->router->get("/", [HomeController::class, "home"], [HomeController::class, "homeMiddleware"]);
+$app->router->get(
+    "/",
+    [HomeController::class, "home"]
+);
 
 $app->router->handleRequest();
-

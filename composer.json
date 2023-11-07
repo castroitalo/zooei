@@ -9,7 +9,8 @@
             "tests\\": "tests/"
         },
         "files": [
-            "config/config.php"
+            "config/config.php",
+            "src/helpers/helper.php"
         ]
     },
     "minimum-stability": "stable",
