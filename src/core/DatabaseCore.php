@@ -49,7 +49,7 @@ class DatabaseCore
     }
 
     /**
-     * Get PDO database connection object
+     * Get database connection 
      *
      * @return PDO|string
      */

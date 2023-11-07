@@ -18,7 +18,14 @@ class App
      *
      * @var PDO
      */
-    private PDO $databaseConnection;
+    public PDO $databaseConnection;
+
+    /**
+     * App's router
+     *
+     * @var RouterCore
+     */
+    public RouterCore $router;
 
     /**
      * App constructor
@@ -26,15 +33,6 @@ class App
     public function __construct()
     {
         $this->databaseConnection = DatabaseCore::getDatabaseConnection();
-    }
-
-    /**
-     * App::$databaseConnection getter
-     *
-     * @return PDO
-     */
-    public function getDatabaseConnection(): PDO
-    {
-        return $this->databaseConnection;
+        $this->router = new RouterCore();
     }
 }
