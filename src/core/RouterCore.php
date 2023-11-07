@@ -126,6 +126,80 @@ class RouterCore
     }
 
     /**
+     * Match requested route with defined route
+     *
+     * @param string $requestHttpMethod
+     * @param string $requestUri
+     * @return RouteModel|null
+     */
+    public function matchRoute(string $requestHttpMethod, string $requestUri): RouteModel|null 
+    {
+        foreach ($this->routes[$requestHttpMethod] as $route) {
+            if ($route->getRouteUri() === $requestUri) {
+                return $route;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Execute route middleware if it has one
+     *
+     * @param RouteModel $route
+     * @return void
+     */
+    public function executeRouteMiddlewareCallback(RouteModel $route): void 
+    {
+        $middlewareClass = $route->getRouteMiddlewareCallback()[0];
+        $middlewareMethod = $route->getRouteMiddlewareCallback()[1];
+        $middlewareClass = new $middlewareClass();
+
+        call_user_func([$middlewareClass, $middlewareMethod]);
+    }
+
+    /**
+     * Execute route controller callback
+     *
+     * @param RouteModel $route
+     * @return void
+     */
+    public function executeRouteControllerCallback(RouteModel $route): void 
+    {
+        $controllerClass = $route->getRouteControllerCallback()[0];
+        $controllerMethod = $route->getRouteControllerCallback()[1];
+        $controllerClass = new $controllerClass();
+
+        call_user_func([$controllerClass, $controllerMethod]);
+    }
+
+    /**
+     * Handle request route
+     *
+     * @return void
+     */
+    public function handleRequest(): void 
+    {
+        $requestHttpMethod = RequestCore::getRequestHttpMethod();
+        $requestUri = RequestCore::getRequestUri();
+        $route = $this->matchRoute($requestHttpMethod, $requestUri);
+    
+        // If the request URI doesn't exists
+        if ($route === null) {
+            ResponseCore::setResponseStatusCode(404);
+            ResponseCore::redirectTo("/pagenotfound");
+        }
+
+        // Execute route middleware
+        if (!is_null($route->getRouteMiddlewareCallback())) {
+            $this->executeRouteMiddlewareCallback($route);
+        }
+
+        // Execute route controller
+        $this->executeRouteControllerCallback($route);
+    }
+
+    /**
      * Get all created routes
      *
      * @return array

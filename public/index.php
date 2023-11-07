@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
+use src\controllers\HomeController;
 use src\core\App;
 
 require_once __DIR__ . "/bootstrap.php";
 
 $app = new App();
 
-$app->router->get("/", [stdClass::class, "method"]);
+$app->router->get("/", [HomeController::class, "home"], [HomeController::class, "homeMiddleware"]);
 
-echo "<pre>";
-var_dump($app->router->getRoutes()["GET"]["/"]->getRouteMiddlewareCallback());
-echo "<pre>";
+$app->router->handleRequest();
 
