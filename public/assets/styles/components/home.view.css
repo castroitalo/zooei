@@ -1,0 +1,12 @@
+.boards .boards-header {
+    width: 100%;
+    padding: .5em 1em;
+    background-color: var(--green);
+    border: 1px solid var(--black);
+}
+
+.boards .boards-header .boards-headers-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--white);
+}
