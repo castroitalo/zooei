@@ -1,9 +1,7 @@
-# Zooei 
+# Zooei (EM DESEMVOLVIMENTO)
 O maior imageboard brasileiro. Nossa missão é libertar as pessoas da régua moral das big techs.
 
-<header style="text-align: center">
-    <h2 style="color: red">EM DESENVOLVIMENTO!!!</h2>
-</header>
+![zooei](https://github.com/devcastroitalo/zooei/blob/main/public/assets/images/zooei.png)
 
 ### Pré-requisito
 - [Docker](https://www.docker.com/) instalado.
