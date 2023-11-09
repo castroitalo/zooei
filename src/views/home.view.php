@@ -5,24 +5,35 @@
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/home.view.css"); ?>">
 <?php $this->stop(); ?>
 
-<section class="boards">
+<section class="boards-container">
 
-    <section class="boards-list">
+    <header class="boards-header">
 
-        <header class="boards-header">
+        <h2 class="boards-headers-title">QUADROS</h2> <!-- .boards-headers-title -->
+    </header> <!-- .boards-header -->
 
-            <h2 class="boards-headers-title">QUADROS</h2>
-        </header> <!-- .boards-header -->
+    <div class="board-list">
 
-        <section class="boards-list">
+        <ul class="board-categories interests">
 
-            <ul class="interests">
+            <header class="categories-header">
+                <h3 class="categories-header-title">Interesses</h3> <!-- .categories-header-title -->
+            </header> <!-- .categories-header -->
 
-            </ul> <!-- .interests -->
+            <?php foreach (get_interest_board_categories() as $interestCategory) : ?>
+                <li class="category"><a href="<?= get_url($interestCategory->board_interests_uri) ?>"><?= $interestCategory->board_interests_title; ?></a></li> <!-- .category -->
+            <?php endforeach; ?>
+        </ul> <!-- .board-categories .interests -->
 
-            <ul class="states">
+        <ul class="board-categories states">
 
-            </ul> <!-- .states -->
-        </section> <!-- .boards-list -->
-    </section> <!-- .boards-list -->
+            <header class="categories-header">
+                <h3 class="categories-header-title">Brasil</h3> <!-- .categories-header-title -->
+            </header> <!-- .categories-header -->
+
+            <?php foreach (get_states_board_categories() as $statesCategory) : ?>
+                <li class="category"><a href="<?= get_url($statesCategory->board_states_uri) ?>"><?= $statesCategory->board_states_title; ?></a></li> <!-- .category -->
+            <?php endforeach; ?>
+        </ul> <!-- .board-categories .states -->
+    </div> <!-- .board-list -->
 </section> <!-- .boards -->

@@ -3,7 +3,7 @@ USE zooei;
 -- Creating states boards table
 CREATE TABLE IF NOT EXISTS zooei.board_states_tbl (
     board_states_id INT AUTO_INCREMENT NOT NULL,
-    board_states_url VARCHAR(5) NOT NULL,
+    board_states_uri VARCHAR(5) NOT NULL,
     board_states_title VARCHAR(20) NOT NULL,
 
     PRIMARY KEY (board_states_id)

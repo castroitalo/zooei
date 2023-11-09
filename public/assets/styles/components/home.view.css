@@ -1,12 +1,46 @@
-.boards .boards-header {
+.boards-container .boards-header {
     width: 100%;
     padding: .5em 1em;
     background-color: var(--green);
     border: 2px solid var(--black);
 }
 
-.boards .boards-header .boards-headers-title {
+.boards-container .boards-header .boards-headers-title {
     font-size: 1.3em;
     font-weight: bold;
     color: var(--white);
+}
+
+.boards-container .board-list {
+    display: flex;
+    margin-top: 1em;
+    justify-content: center;
+}
+
+.boards-container .board-list .board-categories {
+    padding: 1em;
+}
+
+.boards-container .board-list .board-categories .categories-header .categories-header-title { 
+    font-size: 1.5em;
+    margin-bottom: .5em;
+}
+
+.boards-container .board-list .category {
+    margin-bottom: .1em;
+}
+
+.boards-container .board-list .category a {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.boards-container .board-list .category a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    color: var(--blue);
+}
+
+.boards-container .board-list .states {
+    border-left: 1px solid var(--dark-grey);
 }

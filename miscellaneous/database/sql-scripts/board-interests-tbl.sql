@@ -29,7 +29,7 @@ INSERT INTO zooei.board_interests_tbl (
     ("/natureza", "Natureza"),
     ("/animais", "Animais"),
     ("/esportes", "Esportes"),
-    ("/ciencias", "Ciencias"),
+    ("/ciencias", "Ciências"),
     ("/matematica", "Matemática"),
     ("/historia-humanidades", "História/Humanidades"),
     ("/literatura", "Literatura"),

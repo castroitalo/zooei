@@ -7,11 +7,11 @@ namespace src\models;
 use src\core\DaoCore;
 
 /**
- * Class InterestBoardModel
+ * Class BoardModel
  * 
  * @package src\models
  */
-class InterestBoardModel 
+class BoardModel 
 {
     /**
      * Base dao
@@ -21,24 +21,24 @@ class InterestBoardModel
     private DaoCore $dao;
 
     /**
-     * InterestBoardModel::__construct
+     * BoardModel::__construct
      *
      * @param DaoCore|null $dao
      */
-    public function __construct(?DaoCore $dao = null)
+    public function __construct(string $boardDatabaseTable, ?DaoCore $dao = null)
     {
-        $this->dao = $dao ?? new DaoCore($_ENV["DB_BOARD_INTERESTS"]);
+        $this->dao = $dao ?? new DaoCore($boardDatabaseTable);
     }
 
     /**
-     * Get interest board categories
+     * Get board categories
      *
      * @param integer|null $limit
      * @param integer|null $offset
      * @param string $columns
      * @return array|false|string
      */
-    public function getInterestsBoardCategories(
+    public function getBoardCategories(
         ?int $limit = null,
         ?int $offset = null,
         string $columns = "*"
@@ -48,7 +48,7 @@ class InterestBoardModel
     }
 
     /**
-     * InterestBoardModel::$dao getter
+     * BoardModel::$dao getter
      *
      * @return DaoCore
      */
