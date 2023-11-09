@@ -30,7 +30,7 @@ vendor/bin/phpunit --testsuit unit --colors --testdox tests/src/models/BoardMode
 ```
 
 ### Para contribuir
-TODO
+Quer contribuir para o projeto? Leia [CONTRIBUTING](https://github.com/devcastroitalo/zooei/blob/main/CONTRIBUTING.md)
 
 ### Autores
 - [Italo Mateus de Castro](https://github.com/devcastroitalo)
