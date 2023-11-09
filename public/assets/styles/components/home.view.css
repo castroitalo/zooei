@@ -2,7 +2,7 @@
     width: 100%;
     padding: .5em 1em;
     background-color: var(--green);
-    border: 1px solid var(--black);
+    border: 2px solid var(--black);
 }
 
 .boards .boards-header .boards-headers-title {
