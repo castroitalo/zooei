@@ -48,7 +48,6 @@
 
     <!-- Importing scripts files -->
     <script src="<?= get_url("/assets/js/jQuery/jquery-3.7.1.js"); ?>"></script>
-    <script src="<?= get_url("/assets/js/index.js"); ?>"></script>
     <?= $this->section("scripts"); ?>
 </body> <!-- .body -->
 

@@ -12,7 +12,7 @@ Se quiser contribuir para esse projeto primeiro notifique suas mudanças pelo ab
 Nossa missão é emancipar as pessoas da influência moral das grandes empresas de tecnologia. Não podemos verdadeiramente nos considerar livres se nossos meios de informação e expressão de opiniões são controlados por entidades estrangeiras. O Brasil, com sua magnitude, merece ter soberania em suas plataformas de comunicação. Possuímos programadores habilidosos, talentos excepcionais e uma riqueza de criatividade. É hora de consolidar nossa independência no universo do software, utilizando os recursos que já possuímos. A construção é possível, basta agir.
 
 ### Padrões
-No projeto é usado o padrão [PHP The Right Way](https://phptherightway.com/).
+- No projeto é usado o padrão [PHP The Right Way](https://phptherightway.com/).
 - Toda mensagem de commit deve ser escrito em inglês.
 - Todo código fonte (inclusive comentários) deve ser escrito em inglês.
 
