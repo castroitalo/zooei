@@ -13,6 +13,8 @@
     <!-- Importing styles files -->
     <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/reset.css"); ?>">
     <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/colors.css"); ?>">
+    <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/buttons.css"); ?>">
+    <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/display.css"); ?>">
     <link rel="stylesheet" href="<?= get_url("/assets/styles/style.css"); ?>">
     <?= $this->section("styles"); ?>
 
@@ -43,7 +45,6 @@
             <?= $this->section("content"); ?>
         </section> <!-- .content -->
     </div> <!-- .main -->
-
 
     <!-- Importing scripts files -->
     <script src="<?= get_url("/assets/js/jQuery/jquery-3.7.1.js"); ?>"></script>

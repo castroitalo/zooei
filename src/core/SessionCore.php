@@ -24,46 +24,46 @@ final class SessionCore
     /**
      * Get a session value
      *
-     * @param string $key
+     * @param string $sessionKey
      * @return mixed
      */
-    public function getSessionValue(string $key): mixed
+    public function getSessionValue(string $sessionKey): mixed
     {
-        return $_SESSION[$key];
+        return isset($_SESSION[$sessionKey]) ? $_SESSION[$sessionKey] : false;
     }
 
     /**
      * Set a new session value 
      * 
-     * @param string $key
-     * @param mixed $value
+     * @param string $session_key
+     * @param mixed $session_value
      * @return void
      */
-    public function setSessionValue(string $key, mixed $value): void
+    public function setSessionValue(string $session_key, mixed $session_value): void
     {
-        $_SESSION[$key] = $value;
+        $_SESSION[$session_key] = $session_value;
     }
 
     /**
      * Unset a value from $_SESSION
      *
-     * @param string $key
+     * @param string $session_key
      * @return void
      */
-    public function unsetSessionValue(string $key): void 
+    public function unsetSessionValue(string $session_key): void 
     {
-        unset($_SESSION[$key]);
+        unset($_SESSION[$session_key]);
     }
 
     /**
      * Check if the session has a key 
      *
-     * @param string $key
+     * @param string $session_key
      * @return bool
      */
-    public function hasSessionKey(string $key): bool 
+    public function hasSessionKey(string $session_key): bool 
     {
-        return isset($_SESSION[$key]);
+        return isset($_SESSION[$session_key]);
     }
 
     /**

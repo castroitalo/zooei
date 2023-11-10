@@ -43,4 +43,28 @@
             <?php endforeach; ?>
         </ul> <!-- .board-categories .states -->
     </div> <!-- .board-list -->
+
+    <div class="disclaimer-container <?= accept_dack(); ?>">
+
+        <div class="disclaimer-modal">
+
+            <header class="disclaimer-header">
+                <h2 class="disclaimer-header-title">Isenção de responsabilidade</h2> <!-- .disclaimer-header-title -->
+            </header> <!-- .disclaimer-header -->
+
+            <p class="disclaimer-warning">Para acessar <a href="<?= get_url("/"); ?>">zooei.com.br</a> você concorda com as seguintes afirmações:</p> <!-- .disclaimer-warning -->
+
+            <ul class="disclaimer-topics">
+                <li class="topic">- Você tem mais de 18 anos de idade.</li> <!-- .topic -->
+                <li class="topic">- Você concorda com todas as <a href="<?= get_url("/rules"); ?>" target="_blank">Regras</a> do site.</li> <!-- .topic -->
+            </ul> <!-- .disclaimer-topics -->
+
+            <button type="button" class="btn disclaimer-accept-button">Aceito</button> <!-- .btn .disclaimer-accept-button -->
+        </div> <!-- .disclaimer-modal -->
+    </div> <!-- .disclaimer-container .invisible .visible -->
 </section> <!-- .boards -->
+
+<!-- Importing scripts -->
+<?php $this->start("scripts"); ?>
+<script src="<?= get_url("/assets/js/home.view.js"); ?>"></script>
+<?php $this->stop(); ?>

@@ -42,6 +42,34 @@
     color: var(--black);
 }
 
+.disclaimer-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.disclaimer-container .disclaimer-modal {
+    width: 400px;
+    background-color: var(--white);
+    margin: 0 auto;
+    margin-top: 5rem;
+    padding: 1rem;
+}
+
+.disclaimer-container .disclaimer-modal .disclaimer-header .disclaimer-header-title {
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    color: var(--red);
+}
+
+.disclaimer-container .disclaimer-modal .disclaimer-warning {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
 .home-container .board-list .category a:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -50,4 +78,13 @@
 
 .home-container .board-list .states {
     border-left: 1px solid var(--dark-grey);
+}
+
+.home-container .disclaimer-container .disclaimer-modal .disclaimer-accept-button {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.home-container .disclaimer-container .disclaimer-modal .disclaimer-accept-button:hover {
+    background-color: var(--green);
 }

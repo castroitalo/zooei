@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace src\controllers;
 
 use src\core\BaseControllerCore;
+use src\core\RequestCore;
+use src\core\ResponseCore;
 
 /**
  * Class HomeController
@@ -20,6 +22,17 @@ class HomeController extends BaseControllerCore
      */
     public function homepage(): void 
     {
+        $requestBody = RequestCore::getRequestBody();
+
+        if (!empty($requestBody)) {
+
+            // See if user acknowledged the disclaimer
+            if ((bool)$requestBody["accept"] === true) {
+                set_session_key("dack", "yes");
+                ResponseCore::redirectTo("/");
+            }
+        }
+        
         $this->controllerView->render("home.view");
     }
 
