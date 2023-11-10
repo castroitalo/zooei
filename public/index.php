@@ -2,19 +2,7 @@
 
 /**
  * > Created at: 06/11/2023
- * O maior imageboard brasileiro. Nossa missão é libertar as pessoas da régua moral das big techs.
- * 
- *⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⣀⣴⣾⣷⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
- *⠀⠀⠀⠀⠀⠀⠀ ⢀⣴⣾⡿⠿⠟⠻⠿⢿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
- *⠀⠀⠀⠀ ⣀⣤⣾⣿⠟⠁⠀⠀⠀⠀⠀⠀⠈⠻⣿⣷⣤⣀⠀⠀⠀⠀⠀⠀
- *   ⣀⣴⣾⣿⣿⣿⡿⠿⠿⠿⠶⢶⣦⣤⣀⠀⠀⢹⣿⣿⣿⣷⣦⣀⠀⠀⠀
- * ⠰⢾⣿⣿⣿⣿⣿⣿⡁⠀⠀⠀⠀⠀⠀⠈⠙⠳⣦⣈⣿⣿⣿⣿⣿⣿⡷⠆⠀
- *    ⠉⠻⢿⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⣿⣿⣿⡿⠟⠉⠀⠀⠀
- *        ⠉⠛⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠛⠉⠀⠀⠀⠀⠀⠀
- *            ⠈⠻⢿⣷⣶⣦⣴⣶⣾⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
- *                ⠉⠻⢿⡿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
  */
-
 
 declare(strict_types=1);
 
@@ -25,9 +13,7 @@ require_once __DIR__ . "/bootstrap.php";
 
 $app = new App();
 
-$app->router->get(
-    "/",
-    [HomeController::class, "home"]
-);
+$app->router->get("/", [HomeController::class, "homepage"]);
+$app->router->get("/rules", [HomeController::class, "rulesPage"]);
 
 $app->router->handleRequest();

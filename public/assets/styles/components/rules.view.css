@@ -1,0 +1,14 @@
+.rules-container .rules-header .rules-header-title {
+    font-size: 1.5em;
+    margin-bottom: .7em;
+}
+
+.rules-container .rules-list {
+    background-color: var(--white);
+    padding: 1em;
+    border: 1px solid var(--dark-grey);
+}
+
+.rules-container .rules-list .rule {
+    margin-bottom: .5em;
+}

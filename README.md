@@ -1,5 +1,5 @@
 # Zooei (EM DESENVOLVIMENTO)
-O maior imageboard brasileiro. Nossa missão é libertar as pessoas da régua moral das big techs.
+O maior imageboard brasileiro.
 
 ![zooei](https://github.com/devcastroitalo/zooei/blob/main/public/assets/images/zooei.png)
 
@@ -23,7 +23,7 @@ Para executar os testes do zooei, basta rodar o seguinte comando:
 vendor/bin/phpunit --testsuit unit --colors --testdox tests/
 ```
 
-Para executar um teste de um arquivo específico basta informar o arquivo ao final do comando (no exemplo abaixo é executado os testes para a classe Boardodel):
+Para executar um teste de um arquivo específico basta informar o arquivo ao final do comando (no exemplo abaixo é executado os testes para a classe BoardModel):
 
 ```
 vendor/bin/phpunit --testsuit unit --colors --testdox tests/src/models/BoardModelTest.php

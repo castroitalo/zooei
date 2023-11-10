@@ -1,15 +1,15 @@
 # Contribuindo
 
-Se quiser contribuir para esse projeto primeiro notifique suas mudanças pelo aba **issue**.
+Se quiser contribuir para esse projeto primeiro notifique suas mudanças pelo aba **Issues**.
 
 ## O processo de Pull-Request
-1. Tenha certeza que nenhuma pasta ou arquivo de dependências como **node_modules** ou **vendor** estejam fora antes de aplicar o Pull-Request.
+1. Tenha certeza que pastas ou arquivo de dependências como **node_modules** ou **vendor** estejam fora antes de aplicar o Pull-Request.
 2. Atualize o [README](https://github.com/devcastroitalo/zooei/blob/main/README.md) caso necessário.
 3. Lembre-se de atualizar a versao do projeto.
 
 ## Código de conduta
 ### Nossa missão
-Nossa missão é emancipar as pessoas da influência moral das grandes empresas de tecnologia. Não podemos verdadeiramente nos considerar livres se nossos meios de informação e expressão de opiniões são controlados por entidades estrangeiras. O Brasil, com sua magnitude, merece ter soberania em suas plataformas de comunicação, assim como o Japão e a China. Possuímos programadores habilidosos, talentos excepcionais e uma riqueza de criatividade. É hora de consolidar nossa independência no universo do software, utilizando os recursos que já possuímos. A construção é possível, basta agir.
+Nossa missão é emancipar as pessoas da influência moral das grandes empresas de tecnologia. Não podemos verdadeiramente nos considerar livres se nossos meios de informação e expressão de opiniões são controlados por entidades estrangeiras. O Brasil, com sua magnitude, merece ter soberania em suas plataformas de comunicação. Possuímos programadores habilidosos, talentos excepcionais e uma riqueza de criatividade. É hora de consolidar nossa independência no universo do software, utilizando os recursos que já possuímos. A construção é possível, basta agir.
 
 ### Padrões
 No projeto é usado o padrão [PHP The Right Way](https://phptherightway.com/).

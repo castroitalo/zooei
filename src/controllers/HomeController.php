@@ -18,8 +18,18 @@ class HomeController extends BaseControllerCore
      *
      * @return void
      */
-    public function home(): void 
+    public function homepage(): void 
     {
         $this->controllerView->render("home.view");
+    }
+
+    /**
+     * Render the rules page
+     *
+     * @return void
+     */
+    public function rulesPage(): void 
+    {
+        $this->controllerView->render("rules.view");
     }
 }
