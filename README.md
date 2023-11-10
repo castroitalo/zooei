@@ -1,7 +1,7 @@
 # Zooei (EM DESENVOLVIMENTO)
 O maior imageboard brasileiro.
 
-![zooei](https://github.com/devcastroitalo/zooei/blob/main/public/assets/images/zooei.png)
+![zooei](https://github.com/devcastroitalo/zooei/blob/main/miscellaneous/images/print_homepage.png)
 
 ### Pré-requisito
 - [Docker](https://www.docker.com/) instalado.
