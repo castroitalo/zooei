@@ -9,7 +9,7 @@ Se quiser contribuir para esse projeto primeiro notifique suas mudanças pelo ab
 
 ## Código de conduta
 ### Nossa missão
-Nossa missão é libertar as pessoas da régua moral das big techs, não podemos nos considerar livres se tudo que usamos para nos informar, para expressar opiniões são estrangeiras, um país do tamanho do Brasil deveria ter sua soberania em canais de comunicação, o Japão tem, a China tem, por que não podemos?! Temos os programadores, temos os talentos, temos a criatividade, temos tudo que precisa, basta fazer.
+Nossa missão é emancipar as pessoas da influência moral das grandes empresas de tecnologia. Não podemos verdadeiramente nos considerar livres se nossos meios de informação e expressão de opiniões são controlados por entidades estrangeiras. O Brasil, com sua magnitude, merece ter soberania em suas plataformas de comunicação, assim como o Japão e a China. Possuímos programadores habilidosos, talentos excepcionais e uma riqueza de criatividade. É hora de consolidar nossa independência no universo do software, utilizando os recursos que já possuímos. A construção é possível, basta agir.
 
 ### Padrões
 No projeto é usado o padrão [PHP The Right Way](https://phptherightway.com/).
