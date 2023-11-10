@@ -5,12 +5,18 @@
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/home.view.css"); ?>">
 <?php $this->stop(); ?>
 
-<section class="boards-container">
+<section class="home-container">
 
-    <header class="boards-header">
+    <div class="home-options">
 
-        <h2 class="boards-headers-title">QUADROS</h2> <!-- .boards-headers-title -->
-    </header> <!-- .boards-header -->
+        <ul class="options-container">
+            <li class="option"><a href="<?= get_url("/"); ?>">Página Inicial</a></li> <!-- .option -->
+            <li class="option"><a href="<?= get_url("/rules"); ?>" target="_blank">Regras</a></li> <!-- .option -->
+            <li class="option"><a href="https://github.com/devcastroitalo/zooei" target="_blank">Contribua</a></li> <!-- .option -->
+            <li class="option"><a href="#" target="_blank">Apoie</a></li> <!-- .option -->
+            <li class="option"><a href="#" target="_blank">Anuncie</a></li> <!-- .option -->
+        </ul> <!-- .options-container -->
+    </div> <!-- .home-options -->
 
     <div class="board-list">
 

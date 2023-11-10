@@ -38,4 +38,5 @@ INSERT INTO zooei.board_interests_tbl (
     ("/design-grafico", "Design Gráfico"),
     ("/papel-de-parede", "Papel de Parede"),
     ("/musica", "Música"),
-    ("/faca-voce-mesmo", "Faça Você Mesmo");
+    ("/faca-voce-mesmo", "Faça Você Mesmo"),
+    ("/nsfw", "NSFW");

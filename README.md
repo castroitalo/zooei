@@ -1,4 +1,4 @@
-# Zooei (EM DESEMVOLVIMENTO)
+# Zooei (EM DESENVOLVIMENTO)
 O maior imageboard brasileiro. Nossa missão é libertar as pessoas da régua moral das big techs.
 
 ![zooei](https://github.com/devcastroitalo/zooei/blob/main/public/assets/images/zooei.png)
