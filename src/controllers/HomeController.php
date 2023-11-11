@@ -55,4 +55,14 @@ class HomeController extends BaseControllerCore
     {
         $this->controllerView->render("support.view");
     }
+
+    /**
+     * Render advertise page
+     *
+     * @return void
+     */
+    public function advertisePage(): void 
+    {
+        $this->controllerView->render("advertise.view");
+    }
 }
