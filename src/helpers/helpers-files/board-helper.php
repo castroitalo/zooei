@@ -5,22 +5,37 @@ declare(strict_types=1);
 use src\models\BoardModel;
 
 /**
- * Get interest board categories
+ * Get interests boards
  *
  * @return array|false|string
  */
-function get_interest_board_categories(): array|false|string 
+function get_interests_boards(): array|false|string 
 {
-    return (new BoardModel($_ENV["DB_BOARD_INTERESTS"]))->getBoardCategories();
+    $board_category = "intr";
+
+    return (new BoardModel($_ENV["DB_BOARDS_TBL"]))->getBoards(
+        "board_uri, board_title",
+        "WHERE board_category=:board_category",
+        "board_category={$board_category}",
+        null, 
+        null
+    );
 } 
 
 /**
- * Get states board categories
+ * Get states boards
  *
  * @return array|false|string
  */
-function get_states_board_categories(): array|false|string 
+function get_states_boards(): array|false|string 
 {
-    return (new BoardModel($_ENV["DB_BOARD_STATES"]))->getBoardCategories();
-} 
+    $board_category = "brl";
 
+    return (new BoardModel($_ENV["DB_BOARDS_TBL"]))->getBoards(
+        "board_uri, board_title",
+        "WHERE board_category=:board_category",
+        "board_category={$board_category}",
+        null, 
+        null
+    );
+} 

@@ -38,13 +38,15 @@ class BoardModel
      * @param string $columns
      * @return array|false|string
      */
-    public function getBoardCategories(
+    public function getBoards(
+        string $columns = "*",
+        string $where = "",
+        string $whereParams = "",
         ?int $limit = null,
-        ?int $offset = null,
-        string $columns = "*"
+        ?int $offset = null
     ): array|false|string
     {
-        return $this->dao->getData($limit, $offset, $columns);
+        return $this->dao->getData($columns, $where, $whereParams, $limit, $offset);
     }
 
     /**

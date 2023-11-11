@@ -51,12 +51,14 @@ class DaoCore
      * @return array|false|string
      */
     public function getData(
+        string $columns = "*",
+        string $where = "",
+        string $whereParams = "",
         ?int $limit = null,
-        ?int $offset = null,
-        string $columns = "*"
+        ?int $offset = null
     ): array|false|string {
         try {
-            $sql = "SELECT {$columns} FROM {$this->databaseTable}";
+            $sql = "SELECT {$columns} FROM {$this->databaseTable} {$where}";
 
             // If a limit was passed
             if (!is_null($limit)) {
@@ -69,6 +71,17 @@ class DaoCore
             }
 
             $stmt = $this->databaseConnection->prepare($sql);
+
+            // If a where was passed
+            if (!empty($columns)) {
+                parse_str($whereParams, $whereParamsArray);
+
+                foreach ($whereParamsArray as $key => $value) {
+                    $valueType = is_string($value) ? PDO::PARAM_STR : PDO::PARAM_INT;
+
+                    $stmt->bindValue(":{$key}", $value, $valueType);
+                }
+            }
 
             $stmt->execute();
 
@@ -85,7 +98,7 @@ class DaoCore
      *
      * @return string
      */
-    public function getDatbaseTable(): string 
+    public function getDatbaseTable(): string
     {
         return $this->databaseTable;
     }
