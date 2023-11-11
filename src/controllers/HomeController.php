@@ -45,4 +45,14 @@ class HomeController extends BaseControllerCore
     {
         $this->controllerView->render("rules.view");
     }
+
+    /**
+     * Render support page
+     *
+     * @return void
+     */
+    public function supportPage(): void 
+    {
+        $this->controllerView->render("support.view");
+    }
 }

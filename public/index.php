@@ -15,5 +15,6 @@ $app = new App();
 
 $app->router->get("/", [HomeController::class, "homepage"]);
 $app->router->get("/rules", [HomeController::class, "rulesPage"]);
+$app->router->get("/support", [HomeController::class, "supportPage"]);
 
 $app->router->handleRequest();

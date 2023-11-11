@@ -20,6 +20,5 @@
         <li class="rule">4 - Tentar burlar um ban temporário resultará em um banimento permanente.</li> <!-- .rule -->
         <li class="rule">5 - Spam resultará em banimento temporário.</li> <!-- .rule -->
         <li class="rule">6 - Todo conteúdo postado deve ser realacionado com o quadro usado para divulgação do mesmo.</li> <!-- .rule -->
-        <li class="rule">7 - Não é permitido anúncio de qualquer natureza (empreendimento, canal no YouTube, Twitch, Instagram, Twitter, etc) caso queira, entre em contato conosco pela aba <a href="<?= get_url("#"); ?>">Anuncie</a> </li> <!-- .rule -->
     </ol> <!-- .rules-list -->
 </div> <!-- .rules-container -->
