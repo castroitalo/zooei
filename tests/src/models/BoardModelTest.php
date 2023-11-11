@@ -49,12 +49,7 @@ class BoardModelTest extends TestCase
         $dotenv->load();
 
         $this->daoCoreMock = $this->createMock(DaoCore::class);
-
-        // For this test was used interest table
-        $this->boardModel = new BoardModel(
-            $_ENV["DB_BOARD_INTERESTS"],
-            $this->daoCoreMock
-        );
+        $this->boardModel = new BoardModel($this->daoCoreMock);
     }
 
     /**
@@ -62,26 +57,29 @@ class BoardModelTest extends TestCase
      *
      * @return array
      */
-    public static function getBoardCategoriesDataProvider(): array
+    public static function getBoardsDataProvider(): array
     {
         return [
-            "success_default_limit_default_offset_default_columns" => [
-                null, null, "*", [new stdClass()]
+            "success_default_limit_default_offset_default_columns_no_where" => [
+                "*", "", "", null, null, [new stdClass()]
             ],
-            "success_custom_limit_default_offset_default_columns" => [
-                4, null, "*", [new stdClass()]
+            "success_default_limit_default_offset_default_columns_with_where" => [
+                "*", "WHERE column=:column", "columns=coluna", null, null, [new stdClass()]
             ],
-            "success_custom_limit_custom_offset_default_columns" => [
-                4, 10, "*", [new stdClass()]
+            "success_custom_limit_default_offset_default_columns_no_where" => [
+                "*", "WHERE column=:column", "columns=coluna", 10, null, [new stdClass()]
             ],
-            "success_custom_limit_custom_offset_custom_columns" => [
-                4, 10, "board_interests_title", [new stdClass()]
+            "success_custom_limit_custom_offset_default_columns_no_where" => [
+                "*", "WHERE column=:column", "columns=coluna", 5, 10, [new stdClass()]
             ],
-            "success_with_no_data" => [
-                null, null, "*", false
+            "success_custom_limit_custom_offset_custom_columns_no_where" => [
+                "coluna_um", "WHERE column=:column", "columns=coluna", 5, 10, [new stdClass()]
             ],
-            "failed_exception" => [
-                null, null, "*", "Failed to get data. Try again later."
+            "success_no_data" => [
+                "*", "", "", null, null, false
+            ],
+            "failed" => [
+                "*", "", "", null, null, "Failed to get data. Try again later."
             ]
         ];
     }
@@ -95,33 +93,37 @@ class BoardModelTest extends TestCase
      * @param array|false|string $expect
      * @return void
      */
-    #[DataProvider("getBoardCategoriesDataProvider")]
-    public function testGetBoardCategories(
+    #[DataProvider("getBoardsDataProvider")]
+    public function testGetBoards(
+        string $columns,
+        string $where,
+        string $whereParams,
         ?int $limit,
         ?int $offset,
-        string $columns,
         array|false|string $expect
     ): void {
         $this->daoCoreMock->expects($this->once())
             ->method("getData")
-            ->with($limit, $offset, $columns)
+            ->with($columns, $where, $whereParams, $limit, $offset)
             ->willReturn($expect);
 
-        $actual = $this->boardModel->getBoardCategories(
+        $actual = $this->boardModel->getBoards(
+            $columns,
+            $where,
+            $whereParams,
             $limit,
-            $offset,
-            $columns
+            $offset
         );
 
         // Successfull execution with data
         if (is_array($expect)) {
             $this->assertIsArray($actual);
 
-        // Successfull execution with no data
+            // Successfull execution with no data
         } else if ($expect === false) {
             $this->assertFalse($actual);
 
-        // Failed execution with a error message
+            // Failed execution with a error message
         } else if (is_string($expect)) {
             $this->assertIsString($actual);
             $this->assertEquals($expect, $actual);

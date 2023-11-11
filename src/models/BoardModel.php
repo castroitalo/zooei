@@ -25,9 +25,9 @@ class BoardModel
      *
      * @param DaoCore|null $dao
      */
-    public function __construct(string $boardDatabaseTable, ?DaoCore $dao = null)
+    public function __construct(?DaoCore $dao = null)
     {
-        $this->dao = $dao ?? new DaoCore($boardDatabaseTable);
+        $this->dao = $dao ?? new DaoCore($_ENV["DB_BOARDS_TBL"]);
     }
 
     /**

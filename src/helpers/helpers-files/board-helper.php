@@ -13,7 +13,7 @@ function get_interests_boards(): array|false|string
 {
     $board_category = "intr";
 
-    return (new BoardModel($_ENV["DB_BOARDS_TBL"]))->getBoards(
+    return (new BoardModel())->getBoards(
         "board_uri, board_title",
         "WHERE board_category=:board_category",
         "board_category={$board_category}",
@@ -31,7 +31,7 @@ function get_states_boards(): array|false|string
 {
     $board_category = "brl";
 
-    return (new BoardModel($_ENV["DB_BOARDS_TBL"]))->getBoards(
+    return (new BoardModel())->getBoards(
         "board_uri, board_title",
         "WHERE board_category=:board_category",
         "board_category={$board_category}",
