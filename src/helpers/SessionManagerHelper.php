@@ -28,7 +28,7 @@ class SessionManagerHelper
     public static function getSessionCoreInstance(): SessionCore
     {
         if (is_null(self::$sessionCoreInstance)) {
-            self::$sessionCoreInstance = new SessionCore();
+            self::$sessionCoreInstance = SessionCore::getSessionCoreInstance();
         }
 
         return self::$sessionCoreInstance;

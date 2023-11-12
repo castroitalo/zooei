@@ -50,6 +50,24 @@ class BoardModel
     }
 
     /**
+     * Get board based on it's URI
+     *
+     * @param string $boarUri
+     * @param string $columns
+     * @return object|false|string
+     */
+    public function getBoardByUri(
+        string $boarUri,
+        string $columns = "*"
+    ): object|false|string {
+        $where = "WHERE board_uri=:board_uri";
+        $whereParams = "board_uri={$boarUri}";
+        $board = $this->dao->getSingleData($columns, $where, $whereParams);
+
+        return $board;
+    }
+
+    /**
      * BoardModel::$dao getter
      *
      * @return DaoCore

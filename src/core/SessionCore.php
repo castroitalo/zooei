@@ -12,6 +12,13 @@ namespace src\core;
 final class SessionCore
 {
     /**
+     * Singleton SessionCore instance
+     *
+     * @var SessionCore|null
+     */
+    private static ?SessionCore $sessionCoreInstance = null;
+
+    /**
      * SessionCore constructor
      */
     public function __construct()
@@ -84,5 +91,19 @@ final class SessionCore
     public function getSessionId(): string
     {
         return session_id();
+    }
+
+    /**
+     * Get the singletong SessionCore instance
+     *
+     * @return SessionCore
+     */
+    public static function getSessionCoreInstance(): SessionCore
+    {
+        if (is_null(self::$sessionCoreInstance)) {
+            self::$sessionCoreInstance = new self();
+        }
+
+        return self::$sessionCoreInstance;
     }
 }

@@ -39,3 +39,13 @@ function get_states_boards(): array|false|string
         null
     );
 } 
+
+/**
+ * Get all zooei's boards uri
+ *
+ * @return array|false|string
+ */
+function get_all_boards_uri(): array|false|string
+{
+    return (new BoardModel())->getBoards("board_uri", "", "", null, null);
+}

@@ -67,12 +67,33 @@ class BoardModelTest extends TestCase
                 "*", "WHERE column=:column", "columns=coluna", null, null, [new stdClass()]
             ],
             "success_custom_limit_default_offset_default_columns_no_where" => [
+                "*", "", "", 10, null, [new stdClass()]
+            ],
+            "success_custom_limit_default_offset_default_columns_with_where" => [
                 "*", "WHERE column=:column", "columns=coluna", 10, null, [new stdClass()]
             ],
             "success_custom_limit_custom_offset_default_columns_no_where" => [
+                "*", "", "", 5, 10, [new stdClass()]
+            ],
+            "success_custom_limit_custom_offset_default_columns_with_where" => [
                 "*", "WHERE column=:column", "columns=coluna", 5, 10, [new stdClass()]
             ],
+            "success_default_limit_default_offset_custom_columns_no_where" => [
+                "coluna_um", "", "", null, null, [new stdClass()]
+            ],
+            "success_default_limit_default_offset_custom_columns_with_where" => [
+                "coluna_um", "WHERE column=:column", "columns=coluna", null, null, [new stdClass()]
+            ],
+            "success_custom_limit_default_offset_custom_columns_no_where" => [
+                "coluna_um", "", "", 5, null, [new stdClass()]
+            ],
+            "success_custom_limit_defautl_offset_custom_columns_with_where" => [
+                "coluna_um", "WHERE column=:column", "columns=coluna", 5, null, [new stdClass()]
+            ],
             "success_custom_limit_custom_offset_custom_columns_no_where" => [
+                "coluna_um", "", "", 5, 10, [new stdClass()]
+            ],
+            "success_custom_limit_custom_offset_custom_columns_with_where" => [
                 "coluna_um", "WHERE column=:column", "columns=coluna", 5, 10, [new stdClass()]
             ],
             "success_no_data" => [
@@ -119,11 +140,77 @@ class BoardModelTest extends TestCase
         if (is_array($expect)) {
             $this->assertIsArray($actual);
 
-            // Successfull execution with no data
+        // Successfull execution with no data
         } else if ($expect === false) {
             $this->assertFalse($actual);
 
-            // Failed execution with a error message
+        // Failed execution with a error message
+        } else if (is_string($expect)) {
+            $this->assertIsString($actual);
+            $this->assertEquals($expect, $actual);
+        }
+    }
+
+    /**
+     * BoardModel::getBoardByUri teste data provider
+     *
+     * @return array
+     */
+    public static function getBoardByUriTestDataProvider(): array
+    {
+        return [
+            "success_default_columns" => [
+                "/exists", "*", (new stdClass())
+            ],
+            "success_custom_columns" => [
+                "/exists", "board_uri", (new stdClass())
+            ],
+            "success_default_columns_no_data" => [
+                "/doesntexists", "*", false
+            ],
+            "success_custom_columns_no_data" => [
+                "/doesntexists", "board_uri", false
+            ],
+            "failed" => [
+                "/doesntexists", "*", "Failed to get data. Try again later."
+            ]
+        ];
+    }
+
+    /**
+     * Test BoardModel::getBoardByUri
+     *
+     * @param string $boardUri
+     * @param string $columns
+     * @param object|false|string $expect
+     * @return void
+     */
+    #[DataProvider("getBoardByUriTestDataProvider")]
+    public function testGetBoardByUri(
+        string $boardUri,
+        string $columns,
+        object|false|string $expect
+    ): void {
+        $this->daoCoreMock->expects($this->once())
+            ->method("getSingleData")
+            ->with(
+                $columns,
+                "WHERE board_uri=:board_uri",
+                "board_uri={$boardUri}"
+            )
+            ->willReturn($expect);
+
+        $actual = $this->boardModel->getBoardByUri($boardUri, $columns);
+
+        // Success with data
+        if (is_object($expect)) {
+            $this->assertIsObject($actual);
+
+        // Success with no data
+        } else if ($expect === false) {
+            $this->assertFalse($actual);
+
+        // Failed
         } else if (is_string($expect)) {
             $this->assertIsString($actual);
             $this->assertEquals($expect, $actual);

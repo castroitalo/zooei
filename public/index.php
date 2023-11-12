@@ -6,6 +6,7 @@
 
 declare(strict_types=1);
 
+use src\controllers\BoardController;
 use src\controllers\HomeController;
 use src\core\App;
 
@@ -18,5 +19,10 @@ $app->router->get("/", [HomeController::class, "homepage"]);
 $app->router->get("/rules", [HomeController::class, "rulesPage"]);
 $app->router->get("/support", [HomeController::class, "supportPage"]);
 $app->router->get("/advertise", [HomeController::class, "advertisePage"]);
+
+// Boards routes
+foreach (get_all_boards_uri() as $board) {
+    $app->router->get($board->board_uri, [BoardController::class, "boardPage"]);
+}
 
 $app->router->handleRequest();

@@ -73,7 +73,7 @@ class DaoCore
             $stmt = $this->databaseConnection->prepare($sql);
 
             // If a where was passed
-            if (!empty($columns)) {
+            if (!empty($where)) {
                 parse_str($whereParams, $whereParamsArray);
 
                 foreach ($whereParamsArray as $key => $value) {
@@ -86,6 +86,43 @@ class DaoCore
             $stmt->execute();
 
             return $stmt->fetchAll();
+        } catch (PDOException $ex) {
+            error_log($ex->getMessage());
+
+            return "Failed to get data. Try again later.";
+        }
+    }
+
+    /**
+     * Get a single data from database
+     *
+     * @param string $columns
+     * @param string $where
+     * @param string $whereParams
+     * @return object|false|string
+     */
+    public function getSingleData(
+        string $columns = "*",
+        string $where = "",
+        string $whereParams = ""
+    ): object|false|string {
+        try {
+            $sql = "SELECT {$columns} FROM {$this->databaseTable} {$where}";
+            $stmt = $this->databaseConnection->prepare($sql);
+
+            if (!empty($where)) {
+                parse_str($whereParams, $whereParamsArray);
+
+                foreach ($whereParamsArray as $key => $value) {
+                    $valueType = is_string($value) ? PDO::PARAM_STR : PDO::PARAM_INT;
+
+                    $stmt->bindValue(":{$key}", $value, $valueType);
+                }
+            }
+
+            $stmt->execute();
+
+            return $stmt->fetchObject();
         } catch (PDOException $ex) {
             error_log($ex->getMessage());
 
