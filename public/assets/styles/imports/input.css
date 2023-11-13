@@ -1,0 +1,15 @@
+.input, .text {
+    width: 100%;
+    padding: .3em;
+    font-size: 1.3em;
+    border: 1px solid var(--dark-grey);
+    color: var(--black);
+}
+
+.input:focus {
+    outline: none;
+}
+
+.text {
+    resize: none;
+}

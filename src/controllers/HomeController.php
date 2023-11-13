@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -20,7 +20,7 @@ class HomeController extends BaseControllerCore
      *
      * @return void
      */
-    public function homepage(): void 
+    public function homepage(): void
     {
         $requestBody = RequestCore::getRequestBody();
 
@@ -32,7 +32,7 @@ class HomeController extends BaseControllerCore
                 ResponseCore::redirectTo("/");
             }
         }
-        
+
         $this->controllerView->render("home.view");
     }
 
@@ -41,7 +41,7 @@ class HomeController extends BaseControllerCore
      *
      * @return void
      */
-    public function rulesPage(): void 
+    public function rulesPage(): void
     {
         $this->controllerView->render("rules.view");
     }
@@ -51,7 +51,7 @@ class HomeController extends BaseControllerCore
      *
      * @return void
      */
-    public function supportPage(): void 
+    public function supportPage(): void
     {
         $this->controllerView->render("support.view");
     }
@@ -61,8 +61,18 @@ class HomeController extends BaseControllerCore
      *
      * @return void
      */
-    public function advertisePage(): void 
+    public function advertisePage(): void
     {
         $this->controllerView->render("advertise.view");
+    }
+
+    /**
+     * Render 404 page not found
+     *
+     * @return void
+     */
+    public function notFoundPage(): void
+    {
+        $this->controllerView->render("not-found.view");
     }
 }

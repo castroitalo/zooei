@@ -22,12 +22,16 @@ class BoardController extends BaseControllerCore
      */
     public function boardPage(): void
     {
+        // Get requested board
         $requestedBoard = (new BoardModel())
             ->getBoardByUri(RequestCore::getRequestUri());
 
         $this->controllerView->render(
             "board.view",
-            ["boardTitle" => $requestedBoard->board_title]
+            [
+                "board_title" => $requestedBoard->board_title,
+                "board_uri" => $requestedBoard->board_uri
+            ]
         );
     }
 }

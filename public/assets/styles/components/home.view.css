@@ -80,11 +80,6 @@
     border-left: 1px solid var(--dark-grey);
 }
 
-.home-container .disclaimer-container .disclaimer-modal .disclaimer-accept-button {
-    background-color: var(--blue);
-    color: var(--white);
-}
-
 .home-container .disclaimer-container .disclaimer-modal .disclaimer-accept-button:hover {
     background-color: var(--green);
 }

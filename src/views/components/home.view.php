@@ -1,5 +1,5 @@
 <!-- Inherits base HTML  -->
-<?php $this->layout("/template/base.view", ["title" => "Início"]); ?>
+<?php $this->layout("/../template/base.view", ["title" => "Início"]); ?>
 
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
@@ -59,7 +59,7 @@
                 <li class="topic">- Você concorda com todas as <a href="<?= get_url("/rules"); ?>" target="_blank">Regras</a> do site.</li> <!-- .topic -->
             </ul> <!-- .disclaimer-topics -->
 
-            <button type="button" class="btn disclaimer-accept-button">Aceito</button> <!-- .btn .disclaimer-accept-button -->
+            <button type="button" class="btn btn-default disclaimer-accept-button">Aceito</button> <!-- .btn .disclaimer-accept-button -->
         </div> <!-- .disclaimer-modal -->
     </div> <!-- .disclaimer-container .invisible .visible -->
 </section> <!-- .boards -->

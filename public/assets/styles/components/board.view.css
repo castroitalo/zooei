@@ -1,0 +1,61 @@
+.board-container {
+    width: 100%;
+}
+
+.board-container .board-header {
+    background-color: var(--blue);
+    padding: .7rem 2em;
+    margin-bottom: .7em;
+    text-align: center;
+}
+
+.board-container .board-header .board-header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.board-container .new-post-form {
+    width: 100%;
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.board-container .new-post-form .btn-create-post {
+    margin-top: 1em;
+}
+
+.board-container .posts-lists {
+    width: 100%;
+}
+
+.board-container .posts-lists .post {
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--dark-grey);
+    margin-top: 1em;
+    display: flex;
+}
+
+.board-container .posts-lists .post .post-image{
+    margin-right: 1em;
+    width: 250px;
+    height: 250px;
+}
+
+.board-container .posts-lists .post .post-info .post-owner a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--purple);
+}
+
+.board-container .posts-lists .post .post-info .post-owner a:hover {
+    text-decoration: underline;
+}
+
+.board-container .posts-lists .post .post-info .post-created-at {
+    margin-top: .3em;
+}
+
+.board-container .posts-lists .post .post-info .post-text {
+    margin-top: 1em;
+}

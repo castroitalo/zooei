@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/colors.css"); ?>">
     <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/buttons.css"); ?>">
     <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/display.css"); ?>">
+    <link rel="stylesheet" href="<?= get_url("/assets/styles/imports/input.css"); ?>">
     <link rel="stylesheet" href="<?= get_url("/assets/styles/style.css"); ?>">
     <?= $this->section("styles"); ?>
 

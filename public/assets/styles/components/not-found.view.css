@@ -1,0 +1,11 @@
+.not-found-container {
+    width: 100%;
+}
+
+.not-found-container .not-found-header {
+    text-align: center;
+}
+
+.not-found-container .not-found-header .not-found-header-title {
+    font-size: 2em;
+}

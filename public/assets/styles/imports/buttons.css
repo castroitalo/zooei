@@ -1,6 +1,5 @@
 .btn {
     width: 100%;
-    margin-top: 2em;
     padding: .5em 0;
     font-size: 1em;
     font-weight: 600;
@@ -9,4 +8,14 @@
 
 .btn:hover {
     cursor: pointer;
+}
+
+.btn-default {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+.btn-green {
+    background-color: var(--green);
+    color: var(--white);
 }
