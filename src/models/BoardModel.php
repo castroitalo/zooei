@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -11,7 +11,7 @@ use src\core\DaoCore;
  * 
  * @package src\models
  */
-class BoardModel 
+class BoardModel
 {
     /**
      * Base dao
@@ -44,8 +44,7 @@ class BoardModel
         string $whereParams = "",
         ?int $limit = null,
         ?int $offset = null
-    ): array|false|string
-    {
+    ): array|false|string {
         return $this->dao->getData($columns, $where, $whereParams, $limit, $offset);
     }
 
@@ -65,6 +64,13 @@ class BoardModel
         $board = $this->dao->getSingleData($columns, $where, $whereParams);
 
         return $board;
+    }
+
+    public function createNewPost(
+        int $postBoardId,
+        string $postText,
+        array $postImageUploadInfo
+    ): void {
     }
 
     /**

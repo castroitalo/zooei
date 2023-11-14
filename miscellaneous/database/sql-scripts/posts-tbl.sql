@@ -1,0 +1,15 @@
+USE zooei;
+
+-- Create table
+CREATE TABLE IF NOT EXISTS zooei.posts_tbl (
+    post_id INT AUTO_INCREMENT NOT NULL,
+    post_board_id INT NOT NULL,
+    post_owner VARCHAR(65) NOT NULL,
+    post_image VARCHAR(80) NOT NULL,
+    post_text TEXT NOT NULL,
+    post_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (post_id),
+    FOREIGN KEY (post_board_id)
+        REFERENCES zooei.boards_tbl(board_id)
+);

@@ -50,33 +50,56 @@ class RequestCore
     }
 
     /**
-     * Get request $_POST or $_GET body
+     * Get request GET body
      *
      * @return array
      */
-    public static function getRequestBody(): array 
+    public static function getGetRequestBody(): array 
     {
-        // Request body
-        $body = [];
+        $getBody = [];
 
-        // Get GET HTTP method body (query string)
-        if (self::getRequestHttpMethod() === "GET") {
-            if (sizeof($_GET) !== 0) {
-                foreach ($_GET as $key => $value) {
-                    $body[$key] = $value;
-                }
+        if (sizeof($_GET) !== 0) {
+            foreach ($_GET as $key => $value) {
+                $getBody[$key] = $value;
             }
         }
 
-        // Get POST HTTP method body (headers)
-        if (self::getRequestHttpMethod() === "POST") {
-            if (sizeof($_POST) !== 0) {
-                foreach ($_POST as $key => $value) {
-                    $body[$key] = $value;
-                }
+        return $getBody;
+    }
+
+    /**
+     * Get request POST body
+     *
+     * @return array
+     */
+    public static function getPostRequestBody(): array 
+    {
+        $postBody = [];
+
+        if (sizeof($_POST) !== 0) {
+            foreach ($_POST as $key => $value) {
+                $postBody[$key] = $value;
             }
         }
 
-        return $body;
+        return $postBody;
+    }
+
+    /**
+     * Get request upload body
+     *
+     * @return array
+     */
+    public static function getUploadBody(): array 
+    {
+        $uploadBody = [];
+
+        if (sizeof($_FILES) !== 0) {
+            foreach ($_FILES as $key => $value) {
+                $uploadBody[$key] = $value;
+            }
+        }
+
+        return $uploadBody;
     }
 }

@@ -30,7 +30,7 @@ class BoardController extends BaseControllerCore
             "board.view",
             [
                 "board_title" => $requestedBoard->board_title,
-                "board_uri" => $requestedBoard->board_uri
+                "board_uri" => ltrim($requestedBoard->board_uri, "/")
             ]
         );
     }

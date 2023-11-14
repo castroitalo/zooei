@@ -22,7 +22,7 @@ class HomeController extends BaseControllerCore
      */
     public function homepage(): void
     {
-        $requestBody = RequestCore::getRequestBody();
+        $requestBody = RequestCore::getGetRequestBody();
 
         if (!empty($requestBody)) {
 
