@@ -1,0 +1,21 @@
+<?php 
+
+declare(strict_types=1);
+
+/**
+ * Generate post owner ID
+ *
+ * @return string
+ */
+function generate_post_owner(): string 
+{
+    return hash("sha256", date("dmis"));
+}
+
+function generate_image_filename(array $uploadImageInfo, string $postOwner): string 
+{
+    $postNameArray = explode(".", $uploadImageInfo["name"]);
+    $postNameArray[0] = $postOwner . "_image";
+
+    return implode(".", $postNameArray);
+}

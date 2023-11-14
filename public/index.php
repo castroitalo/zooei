@@ -25,6 +25,8 @@ foreach (get_all_boards_uri() as $board) {
     $app->router->get($board->board_uri, [BoardController::class, "boardPage"]);
 }
 
+$app->router->post("/newpost", [BoardController::class, "createNewPost"]);
+
 // Not found
 $app->router->get("/pagenotfound", [HomeController::class, "notFoundPage"]);
 
