@@ -29,4 +29,14 @@ class PostModel
     {
         $this->dao = $dao ?? new DaoCore($_ENV["DB_POSTS_TBL"]);
     }
+
+    /**
+     * PostModel::$dao getter
+     *
+     * @return DaoCore
+     */
+    public function getDao(): DaoCore
+    {
+        return $this->dao;
+    }
 }

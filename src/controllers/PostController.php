@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare(strict_types=1);
 
@@ -29,7 +29,11 @@ class PostController extends BaseControllerCore
         array $uploadImageInfo,
         array $postText
     ): array|false {
-        if (empty($imageUploadInfo) || empty($postText) || empty($boardUri)) {
+        if (
+            $boardUri === [] ||
+            $uploadImageInfo === [] || 
+            $postText === []
+        ) {
             return false;
         }
 
@@ -72,18 +76,8 @@ class PostController extends BaseControllerCore
             $postText
         );
 
-        if ($newPostData === false) {
-            $this->setNewFlash(
-                "Falha ao criar post. Tente novamente mais tarde.",
-                CONF_FLASH_DANGER
-            );
-            ResponseCore::setResponseStatusCode(404);
-            ResponseCore::redirectTo("/" . $boardUri["board"]);
-        } else {
-            echo "<pre>";
-            var_dump($newPostData);
-            echo "</pre>";
-        }
+        echo "<pre>";
+        var_dump($newPostData);
+        echo "</pre>";
     }
 }
-
