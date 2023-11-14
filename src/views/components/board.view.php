@@ -13,6 +13,11 @@
         <h2 class="board-header-title"><?= $board_title; ?></h2> <!-- .board-header-title -->
     </header> <!-- .board-header -->
 
+    <!-- Render flash is there is one -->
+    <?php if (has_session_key("flash_message")): ?>
+        <?= get_flash_message(); ?>
+    <?php endif; ?>
+
     <form action="<?= get_url("/newpost?board={$board_uri}"); ?>" method="POST" enctype="multipart/form-data" class="new-post-form">
 
         <textarea name="post_text" id="post-text" cols="30" rows="10" required placeholder="Seu texto aqui..." class="textarea post-text"></textarea> <!-- .textarea .post-text -->

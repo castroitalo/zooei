@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 use src\controllers\BoardController;
 use src\controllers\HomeController;
+use src\controllers\PostController;
 use src\core\App;
 
 require_once __DIR__ . "/bootstrap.php";
@@ -25,7 +26,7 @@ foreach (get_all_boards_uri() as $board) {
     $app->router->get($board->board_uri, [BoardController::class, "boardPage"]);
 }
 
-$app->router->post("/newpost", [BoardController::class, "createNewPost"]);
+$app->router->post("/newpost", [PostController::class, "createNewPost"]);
 
 // Not found
 $app->router->get("/pagenotfound", [HomeController::class, "notFoundPage"]);

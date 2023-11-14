@@ -130,6 +130,12 @@ class DaoCore
         }
     }
 
+    /**
+     * Create new data on database
+     *
+     * @param array $newData
+     * @return integer|string
+     */
     public function createData(array $newData): int|string
     {
         $this->databaseConnection->beginTransaction();
@@ -150,7 +156,7 @@ class DaoCore
             } else {
                 $this->databaseConnection->rollBack();
 
-                return "Failed to get data. Try again later.";
+                return "Failed to create data. Try again later.";
             }
 
             return (int)$this->databaseConnection->lastInsertId();
@@ -158,7 +164,7 @@ class DaoCore
             error_log($ex->getMessage());
             $this->databaseConnection->rollBack();
 
-            return "Failed to get data. Try again later.";
+            return "Failed to create data. Try again later.";
         }
     }
 

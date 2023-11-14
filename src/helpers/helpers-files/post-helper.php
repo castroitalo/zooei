@@ -12,6 +12,13 @@ function generate_post_owner(): string
     return hash("sha256", date("dmis"));
 }
 
+/**
+ * Generate a new filename based on post owner ID
+ *
+ * @param array $uploadImageInfo
+ * @param string $postOwner
+ * @return string
+ */
 function generate_image_filename(array $uploadImageInfo, string $postOwner): string 
 {
     $postNameArray = explode(".", $uploadImageInfo["name"]);

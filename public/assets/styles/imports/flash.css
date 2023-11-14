@@ -1,0 +1,26 @@
+.flash {
+    padding: .7em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.flash-danger {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.flash-warning {
+    background-color: var(--yellow);
+    color: var(--black);
+}
+
+.flash-info {
+    background-color: var(--clear-blue);
+    color: var(--white);
+}
+
+.flash-success {
+    background-color: var(--green);
+    color: var(--white);
+}

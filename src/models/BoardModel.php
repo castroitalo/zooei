@@ -66,13 +66,6 @@ class BoardModel
         return $board;
     }
 
-    public function createNewPost(
-        int $postBoardId,
-        string $postText,
-        array $postImageUploadInfo
-    ): void {
-    }
-
     /**
      * BoardModel::$dao getter
      *
