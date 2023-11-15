@@ -7,6 +7,7 @@ namespace src\controllers;
 use src\core\BaseControllerCore;
 use src\core\RequestCore;
 use src\models\BoardModel;
+use src\models\PostModel;
 
 /**
  * Class BoardController
@@ -30,7 +31,9 @@ class BoardController extends BaseControllerCore
             "board.view",
             [
                 "board_title" => $requestedBoard->board_title,
-                "board_uri" => ltrim($requestedBoard->board_uri, "/")
+                "board_uri" => ltrim($requestedBoard->board_uri, "/"),
+                "board_posts" => (new PostModel())
+                    ->getAllBoardPosts($requestedBoard->board_id)
             ]
         );
     }

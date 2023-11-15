@@ -62,7 +62,7 @@ class DaoCore
 
             // If a limit was passed
             if (!is_null($limit)) {
-                $sql .= "LIMIT {$limit}";
+                $sql .= " LIMIT {$limit}";
 
                 // If a offset was passed
                 if (!is_null($offset)) {

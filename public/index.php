@@ -10,6 +10,7 @@ use src\controllers\BoardController;
 use src\controllers\HomeController;
 use src\controllers\PostController;
 use src\core\App;
+use src\models\PostModel;
 
 require_once __DIR__ . "/bootstrap.php";
 

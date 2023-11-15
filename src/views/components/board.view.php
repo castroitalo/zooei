@@ -29,20 +29,22 @@
 
     <ul class="posts-lists">
 
-        <?php for ($i = 0; $i < 10; ++$i) : ?>
+        <?php var_dump($board_posts); ?>
+
+        <?php foreach ($board_posts as $post): ?>
             <li class="post">
 
-                <img src="<?= get_url("/assets/images/post_image_example.jpg"); ?>" alt="post-image" class="post-image"> <!-- .post-image -->
+                <img src="<?= get_url("/assets/images/post-images/" . $post->post_image); ?>" alt="post-image" class="post-image"> <!-- .post-image -->
 
                 <div class="post-info">
 
-                    <h3 class="post-owner">&#x27A4; <a href="#">Ir para o post.</a></h3> <!-- .post-owner -->
+                    <h3 class="post-owner">&#x27A4; <a href="<?= get_url(get_uri() . "/" . $post->post_owner); ?>">Ir para o post.</a></h3> <!-- .post-owner -->
 
-                    <p class="post-created-at">99/99/999 - 99:99</p> <!-- .post-created-at -->
-                    <p class="post-text"><?= limit_words("Vestibulum efficitur congue justo. Morbi ultrices tincidunt urna id dictum. Suspendisse rhoncus eros id ex pretium mattis a a dolor. Morbi faucibus ultrices leo, at tempor turpis aliquet in. Donec sollicitudin posuere euismod. Nunc scelerisque convallis lobortis. Nulla euismod nisi dui, sit amet tempus massa convallis id. Integer et blandit libero, non lacinia ligula. Donec vulputate ex in mollis gravida. Phasellus semper, enim id feugiat consequat, lacus ante malesuada lacus, non vestibulum urna odio efficitur nunc. Aenean semper eu justo dictum malesuada. Integer lacus elit, mollis eget libero et, faucibus varius eros. Curabitur dapibus odio eros, quis aliquam turpis sollicitudin eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut dapibus enim. Vestibulum efficitur congue justo. Morbi ultrices tincidunt urna id dictum. Suspendisse rhoncus eros id ex pretium mattis a a dolor. Morbi faucibus ultrices leo, at tempor turpis aliquet in. Donec sollicitudin posuere euismod. Nunc scelerisque convallis lobortis. Nulla euismod nisi dui, sit amet tempus massa convallis id. Integer et blandit libero, non lacinia ligula. Donec vulputate ex in mollis gravida. Phasellus semper, enim id feugiat consequat, lacus ante malesuada lacus, non vestibulum urna odio efficitur nunc. Aenean semper eu justo dictum malesuada. Integer lacus elit, mollis eget libero et, faucibus varius eros. Curabitur dapibus odio eros, quis aliquam turpis sollicitudin eget. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ut dapibus enim.", 100); ?></p> <!-- .post-text -->
+                    <p class="post-created-at"><?= $post->post_created_at; ?></p> <!-- .post-created-at -->
+                    <p class="post-text"><?= limit_words($post->post_text, 100); ?></p> <!-- .post-text -->
                 </div> <!-- .post-info -->
             </li> <!-- .post -->
-        <?php endfor; ?>
+        <?php endforeach; ?>
     </ul> <!-- .posts-lists -->
 </div> <!-- .board-container -->
 
