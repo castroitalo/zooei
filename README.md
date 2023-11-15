@@ -15,6 +15,13 @@ O maior imageboard brasileiro.
     - Entre no container docker: `docker container exec -it zooei-web-1 bash`
     - Instale as dependências do projeto com o composer: `composer update`
     - Crie um arquivo chamado **.env** na raiz do projeto usando o arquivo **.env.template** e preencha os campos.
+    - Crie os diretórios de upload:
+        - Dentro do container:
+            - `mkdir uploads`
+            - `chmod 753 uploads/`
+            - `cd uploads/`
+            - `mkdir posts-images`
+            - `chmod 753 posts-images/`
 
 ### Executando testes
 Para executar os testes do zooei, basta rodar o seguinte comando:
