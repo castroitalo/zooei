@@ -82,7 +82,7 @@ class PostModel
                 post_owner, 
                 post_image, 
                 post_text, 
-                DATE_FORMAT(post_created_at, \"%d/%m/%Y %H:%i\") AS post_created_at",
+                DATE_FORMAT(post_created_at, \"%d/%m/%Y - %H:%i\") AS post_created_at",
             "WHERE post_board_id=:post_board_id",
             "post_board_id={$postBoardId}",
             10

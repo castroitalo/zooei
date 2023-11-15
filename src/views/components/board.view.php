@@ -1,6 +1,5 @@
 <!-- Inherits base HTML  -->
 <?php $this->layout("/../template/base.view", ["title" => $board_title]); ?>
-
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/board.view.css"); ?>">
@@ -29,12 +28,10 @@
 
     <ul class="posts-lists">
 
-        <?php var_dump($board_posts); ?>
-
         <?php foreach ($board_posts as $post): ?>
             <li class="post">
 
-                <img src="<?= get_url("/assets/images/post-images/" . $post->post_image); ?>" alt="post-image" class="post-image"> <!-- .post-image -->
+                <img src="<?= get_url("/assets/images/posts-images/" . $post->post_image); ?>" alt="post-image" class="post-image"> <!-- .post-image -->
 
                 <div class="post-info">
 

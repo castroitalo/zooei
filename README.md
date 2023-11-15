@@ -17,9 +17,7 @@ O maior imageboard brasileiro.
     - Crie um arquivo chamado **.env** na raiz do projeto usando o arquivo **.env.template** e preencha os campos.
     - Crie os diretórios de upload:
         - Dentro do container:
-            - `mkdir uploads`
-            - `chmod 753 uploads/`
-            - `cd uploads/`
+            - `cd public/assets/images`
             - `mkdir posts-images`
             - `chmod 753 posts-images/`
 
