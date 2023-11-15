@@ -61,6 +61,9 @@ class PostModelTest extends TestCase
                     "post_image" => "6c1af77e6fc94019dee57a61ef20a879abc0f6cbcb4b58ab3e62ba8bafb2f785_image.png",
                     "post_text" => "Post text."
                 ],
+                [
+                    "upload_info" => "upload_info"
+                ],
                 1
             ],
             "failed" => [
@@ -69,6 +72,9 @@ class PostModelTest extends TestCase
                     "post_owner" => "6c1af77e6fc94019dee57a61ef20a879abc0f6cbcb4b58ab3e62ba8bafb2f785",
                     "post_image" => "6c1af77e6fc94019dee57a61ef20a879abc0f6cbcb4b58ab3e62ba8bafb2f785_image.png",
                     "post_text" => "Post text."
+                ],
+                [
+                    "upload_info" => "upload_info"
                 ],
                 "Falha ao criar post."
             ]
@@ -83,21 +89,24 @@ class PostModelTest extends TestCase
      * @return void
      */
     #[DataProvider("createNewPostTestDataProvider")]
-    public function testCreateNewPost(array $newPostData, int|string $expect): void
-    {
+    public function testCreateNewPost(
+        array $newPostData,
+        array $imageUploadInfo,
+        int|string $expect
+    ): void {
         $this->daoCoreMock->expects($this->once())
             ->method("createData")
             ->with($newPostData)
             ->willReturn($expect);
 
-        $actual = $this->postModel->createNewPost($newPostData);
+        $actual = $this->postModel->createNewPost($newPostData, $imageUploadInfo);
 
         // Success creation
         if (is_string($expect)) {
             $this->assertIsString($actual);
             $this->assertEquals($expect, $actual);
 
-        // Failed creation
+            // Failed creation
         } else {
             $this->assertIsInt($expect);
         }

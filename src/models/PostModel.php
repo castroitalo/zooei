@@ -31,16 +31,44 @@ class PostModel
     }
 
     /**
+     * Upload a new post image file
+     *
+     * @param array $postImageFileInfo
+     * @param string $imageFilename
+     * @return boolean
+     */
+    private function uploadImagePost(array $postImageFileInfo, string $imageFilename): bool 
+    {
+        if ($postImageFileInfo["post_image"]["error"] === 0) {
+            $destination = CONF_UPLOAD_POSTS_PATH . $imageFilename;
+
+            if (move_uploaded_file($postImageFileInfo["post_image"]["tmp_name"], $destination)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Create new post
      *
      * @param array $newPostData
      * @return integer|string
      */
-    public function createNewPost(array $newPostData): int|string 
+    public function createNewPost(array $newPostData, array $postImageFileInfo): int|string 
     {
+        // Create post on database
         $newPost = $this->dao->createData($newPostData);
     
         if (is_string($newPost)) {
+            return "Falha ao criar post.";
+        }
+
+        // Upload post image file
+        $newPostImage = $this->uploadImagePost($postImageFileInfo, $newPostData["post_image"]);
+
+        if ($newPostImage === false) {
             return "Falha ao criar post.";
         }
 

@@ -82,7 +82,10 @@ class PostController extends BaseControllerCore
             ResponseCore::setResponseStatusCode(409);
             ResponseCore::redirectTo("/");
         } else {
-            $newPost = (new PostModel())->createNewPost($newPostData);
+            $newPost = (new PostModel())->createNewPost(
+                $newPostData,
+                $uploadImageInfo
+            );
 
             if (is_string($newPost)) {
                 $this->setNewFlash($newPost, CONF_FLASH_DANGER);
