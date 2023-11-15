@@ -44,10 +44,6 @@ class BoardModelTest extends TestCase
      */
     protected function setUp(): void
     {
-        $dotenv = Dotenv::createImmutable(CONF_ROOT_DIR);
-
-        $dotenv->load();
-
         $this->daoCoreMock = $this->createMock(DaoCore::class);
         $this->boardModel = new BoardModel($this->daoCoreMock);
     }

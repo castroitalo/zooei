@@ -31,6 +31,23 @@ class PostModel
     }
 
     /**
+     * Create new post
+     *
+     * @param array $newPostData
+     * @return integer|string
+     */
+    public function createNewPost(array $newPostData): int|string 
+    {
+        $newPost = $this->dao->createData($newPostData);
+    
+        if (is_string($newPost)) {
+            return "Falha ao criar post.";
+        }
+
+        return $newPost;
+    }
+
+    /**
      * PostModel::$dao getter
      *
      * @return DaoCore

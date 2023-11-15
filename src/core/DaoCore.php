@@ -144,8 +144,7 @@ class DaoCore
             // Extract data from $newData to SQL script
             $fields = implode(", ", array_keys($newData));
             $values = ":" . implode(", :", array_keys($newData));
-            $sql = "INSERT INTO {$this->databaseTable} ({$fields}) 
-                VALUES ({$values});";
+            $sql = "INSERT INTO {$this->databaseTable} ({$fields}) VALUES ({$values});";
             $stmt = $this->databaseConnection->prepare($sql);
 
             // If insertion succeed

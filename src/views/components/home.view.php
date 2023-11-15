@@ -19,6 +19,11 @@
         </ul> <!-- .options-container -->
     </div> <!-- .home-options -->
 
+    <!-- Render flash is there is one -->
+    <?php if (has_session_key("flash_message")): ?>
+        <?= get_flash_message(); ?>
+    <?php endif; ?>
+
     <div class="board-list">
 
         <ul class="board-categories interests">

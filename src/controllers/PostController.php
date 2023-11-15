@@ -8,6 +8,7 @@ use src\core\BaseControllerCore;
 use src\core\RequestCore;
 use src\core\ResponseCore;
 use src\models\BoardModel;
+use src\models\PostModel;
 
 /**
  * Class PostController
@@ -31,7 +32,7 @@ class PostController extends BaseControllerCore
     ): array|false {
         if (
             $boardUri === [] ||
-            $uploadImageInfo === [] || 
+            $uploadImageInfo === [] ||
             $postText === []
         ) {
             return false;
@@ -76,8 +77,21 @@ class PostController extends BaseControllerCore
             $postText
         );
 
-        echo "<pre>";
-        var_dump($newPostData);
-        echo "</pre>";
+        if ($newPostData === false) {
+            $this->setNewFlash("Dados do post inválidos.", CONF_FLASH_DANGER);
+            ResponseCore::setResponseStatusCode(409);
+            ResponseCore::redirectTo("/");
+        } else {
+            $newPost = (new PostModel())->createNewPost($newPostData);
+
+            if (is_string($newPost)) {
+                $this->setNewFlash($newPost, CONF_FLASH_DANGER);
+                ResponseCore::setResponseStatusCode(409);
+                ResponseCore::redirectTo("/" . $boardUri["board"]);
+            } else {
+                $this->setNewFlash("Post criado com sucesso.", CONF_FLASH_SUCCESS);
+                ResponseCore::redirectTo("/" . $boardUri["board"]);
+            }
+        }
     }
 }
