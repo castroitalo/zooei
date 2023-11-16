@@ -24,7 +24,7 @@
 
         <textarea name="comment_text" id="comment-text" cols="30" rows="10" required placeholder="Seu comentário aqui..." class="textarea comment-text"></textarea> <!-- .textarea .comment-text -->
 
-        <input type="file" name="comment_image" id="comment-text" required accept="image/*" class="comment-image"> <!-- .comment-image -->
+        <input type="file" name="comment_image" id="comment-text" accept="image/*" class="comment-image"> <!-- .comment-image -->
 
         <button type="submit" class="btn btn-green btn-create-comment">Criar comentário</button> <!-- .btn .btn-green .btn-create-comment -->
     </form> <!-- .new-comment-form -->

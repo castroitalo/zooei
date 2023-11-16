@@ -123,4 +123,9 @@ class PostController extends BaseControllerCore
             );
         }
     }
+
+    public function createNewComment(): void 
+    {
+
+    }
 }
