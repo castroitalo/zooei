@@ -11,6 +11,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use src\core\DaoCore;
 use src\models\PostModel;
+use stdClass;
 
 /**
  * Class PostModelTest
@@ -109,6 +110,61 @@ class PostModelTest extends TestCase
             // Failed creation
         } else {
             $this->assertIsInt($expect);
+        }
+    }
+
+    /**
+     * PostModel::getPostByOwner test data provider
+     *
+     * @return array
+     */
+    public static function getPostByOwnerTestDataProvider(): array
+    {
+        return [
+            "success_with_data" => [
+                new stdClass()
+            ],
+            "success_no_data" => [
+                false
+            ],
+            "failed" => [
+                "Failed to get data. Try again later."
+            ]
+        ];
+    }
+
+    /**
+     * Test PostModel::getPostByOwner test
+     *
+     * @param object|false|string $expect
+     * @return void
+     */
+    #[DataProvider("getPostByOwnerTestDataProvider")]
+    public function testGetPostByOwner(object|false|string $expect): void
+    {
+        $this->daoCoreMock->expects($this->once())
+            ->method("getSingleData")
+            ->with(
+                "*",
+                "WHERE post_owner=:post_owner",
+                "post_owner=c738fc92b1ea156127e3d90ea34a27a258b799b1f48137da08db091101d7264e"
+            )
+            ->willReturn($expect);
+
+        $actual = $this->postModel->getPostByOwner("c738fc92b1ea156127e3d90ea34a27a258b799b1f48137da08db091101d7264e");
+
+        // Success with a data 
+        if (is_object($expect)) {
+            $this->assertIsObject($actual);
+
+        // Success with no data
+        } else if ($expect === false) {
+            $this->assertFalse($actual);
+
+        // Failed
+        } else if (is_string($expect)) {
+            $this->assertIsString($actual);
+            $this->assertEquals($expect, $actual);
         }
     }
 }

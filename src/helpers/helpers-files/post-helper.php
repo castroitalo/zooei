@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use src\core\SessionCore;
+
 /**
  * Generate post owner ID
  *
@@ -9,7 +11,7 @@ declare(strict_types=1);
  */
 function generate_post_owner(): string 
 {
-    return hash("sha256", date("dmis"));
+    return hash("sha256", date("dmis") . (new SessionCore())->getSessionId());
 }
 
 /**

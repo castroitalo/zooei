@@ -54,7 +54,8 @@ class PostController extends BaseControllerCore
                 "post_board_id" => $postBoardId,
                 "post_owner" => $postOwner,
                 "post_image" => $postImagePath,
-                "post_text" => $postText
+                "post_text" => $postText,
+                "post_created_at" => date("d/m/Y - H:i")
             ];
         }
 
@@ -95,6 +96,31 @@ class PostController extends BaseControllerCore
                 $this->setNewFlash("Post criado com sucesso.", CONF_FLASH_SUCCESS);
                 ResponseCore::redirectTo("/" . $boardUri["board"]);
             }
+        }
+    }
+
+    /**
+     * Render post page 
+     *
+     * @return void
+     */
+    public function postPage(): void
+    {
+        $postOwner = RequestCore::getGetRequestBody();
+        $post = (new PostModel())
+            ->getPostByOwner($postOwner["owner"]);
+
+        if ($post === false || is_string($post)) {
+            ResponseCore::setResponseStatusCode(404);
+            ResponseCore::redirectTo("/pagenotfound");
+        } else {
+            $this->controllerView->render(
+                "post.view",
+                [
+                    "post_title" => "Post",
+                    "post_data" => $post
+                ]
+            );
         }
     }
 }

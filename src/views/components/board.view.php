@@ -1,5 +1,6 @@
 <!-- Inherits base HTML  -->
 <?php $this->layout("/../template/base.view", ["title" => $board_title]); ?>
+
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/board.view.css"); ?>">
@@ -35,7 +36,7 @@
 
                 <div class="post-info">
 
-                    <h3 class="post-owner">&#x27A4; <a href="<?= get_url(get_uri() . "/" . $post->post_owner); ?>">Ir para o post.</a></h3> <!-- .post-owner -->
+                    <h3 class="post-owner">&#x27A4; <a href="<?= get_url("/post?owner=" . $post->post_owner); ?>">Ir para o post.</a></h3> <!-- .post-owner -->
 
                     <p class="post-created-at"><?= $post->post_created_at; ?></p> <!-- .post-created-at -->
                     <p class="post-text"><?= limit_words($post->post_text, 100); ?></p> <!-- .post-text -->

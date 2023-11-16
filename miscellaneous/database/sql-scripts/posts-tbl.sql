@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS zooei.posts_tbl (
     post_owner VARCHAR(65) NOT NULL,
     post_image VARCHAR(80) NOT NULL,
     post_text TEXT NOT NULL,
-    post_created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    post_created_at VARCHAR(25) NOT NULL,
 
     PRIMARY KEY (post_id),
     FOREIGN KEY (post_board_id)

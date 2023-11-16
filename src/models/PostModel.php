@@ -31,6 +31,45 @@ class PostModel
     }
 
     /**
+     * Get all board's post
+     *
+     * @param integer $postBoardId
+     * @return array|false|string
+     */
+    public function getAllBoardPosts(int $postBoardId): array|false|string
+    {
+        $posts = $this->dao->getData(
+            "post_board_id, 
+                post_owner, 
+                post_image, 
+                post_text, 
+                post_created_at",
+            "WHERE post_board_id=:post_board_id ORDER BY post_created_at DESC",
+            "post_board_id={$postBoardId}",
+            10
+        );
+
+        return $posts;
+    }
+
+    /**
+     * Get post by it's owner hash
+     *
+     * @param string $postOwner
+     * @return object|false|string
+     */
+    public function getPostByOwner(string $postOwner): object|false|string
+    {
+        $post = $this->dao->getSingleData(
+            "*",
+            "WHERE post_owner=:post_owner",
+            "post_owner={$postOwner}"
+        );
+    
+        return $post;
+    }
+
+    /**
      * Upload a new post image file
      *
      * @param array $postImageFileInfo
@@ -73,22 +112,6 @@ class PostModel
         }
 
         return $newPost;
-    }
-
-    public function getAllBoardPosts(int $postBoardId): array|false|string
-    {
-        $posts = $this->dao->getData(
-            "post_board_id, 
-                post_owner, 
-                post_image, 
-                post_text, 
-                DATE_FORMAT(post_created_at, \"%d/%m/%Y - %H:%i\") AS post_created_at",
-            "WHERE post_board_id=:post_board_id",
-            "post_board_id={$postBoardId}",
-            10
-        );
-
-        return $posts;
     }
 
     /**
