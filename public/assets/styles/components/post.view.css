@@ -1,0 +1,28 @@
+.post-container {
+    width: 100%;
+}
+
+.post-container .post {
+    border-top: 1px solid var(--dark-grey);
+    padding: 1em;
+}
+
+.post-container .post .post-image {
+    width: 250px;
+    height: 250px;
+    margin-right: 1em;
+    float: left;
+}
+
+.post-container .post .post-content .post-created-at {
+    margin-bottom: 1em;
+}
+
+.post-container .new-comment-form {
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.post-container .new-comment-form .btn-create-comment {
+    margin-top: 1em;
+}

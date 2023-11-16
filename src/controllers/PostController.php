@@ -32,7 +32,7 @@ class PostController extends BaseControllerCore
     ): array|false {
         if (
             $boardUri === [] ||
-            $uploadImageInfo === [] ||
+            empty($uploadImageInfo["required"]["required"]) ||
             $postText === []
         ) {
             return false;
@@ -81,7 +81,7 @@ class PostController extends BaseControllerCore
         if ($newPostData === false) {
             $this->setNewFlash("Dados do post inválidos.", CONF_FLASH_DANGER);
             ResponseCore::setResponseStatusCode(409);
-            ResponseCore::redirectTo("/");
+            ResponseCore::redirectTo("/" . $boardUri["board"]);
         } else {
             $newPost = (new PostModel())->createNewPost(
                 $newPostData,

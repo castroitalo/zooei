@@ -22,7 +22,7 @@
 
         <textarea name="post_text" id="post-text" cols="30" rows="10" required placeholder="Seu texto aqui..." class="textarea post-text"></textarea> <!-- .textarea .post-text -->
 
-        <input type="file" name="post_image" id="board-text" required accept="image/*" class="post-image"> <!-- .post-image -->
+        <input type="file" name="post_image" id="board-image" required accept="image/*" class="post-image"> <!-- .post-image -->
 
         <button type="submit" class="btn btn-green btn-create-post">Criar tópico</button> <!-- .btn .btn-green .btn-create-post -->
     </form> <!-- .new-post-form -->
@@ -38,7 +38,7 @@
 
                     <h3 class="post-owner">&#x27A4; <a href="<?= get_url("/post?owner=" . $post->post_owner); ?>">Ir para o post.</a></h3> <!-- .post-owner -->
 
-                    <p class="post-created-at"><?= $post->post_created_at; ?></p> <!-- .post-created-at -->
+                    <p class="post-created-at">Criado em: <?= $post->post_created_at; ?></p> <!-- .post-created-at -->
                     <p class="post-text"><?= limit_words($post->post_text, 100); ?></p> <!-- .post-text -->
                 </div> <!-- .post-info -->
             </li> <!-- .post -->

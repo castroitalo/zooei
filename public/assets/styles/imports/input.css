@@ -7,7 +7,7 @@
 }
 
 .input-invalid {
-    border: 1px solid var(--red);
+    border: 5px solid var(--red);
 }
 
 .input:focus {
