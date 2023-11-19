@@ -7,7 +7,6 @@
 declare(strict_types=1);
 
 use src\controllers\BoardController;
-use src\controllers\CommentController;
 use src\controllers\HomeController;
 use src\controllers\PostController;
 use src\core\App;
@@ -30,9 +29,6 @@ foreach (get_all_boards_uri() as $board) {
 // Posts routes
 $app->router->post("/newpost", [PostController::class, "createNewPost"]);
 $app->router->get("/post", [PostController::class, "postPage"]);
-
-// Comments routes
-$app->router->post("/newcomment", [CommentController::class, "createNewComment"]);
 
 // Not found
 $app->router->get("/pagenotfound", [HomeController::class, "notFoundPage"]);

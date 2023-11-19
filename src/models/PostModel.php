@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace src\models;
 
+use SebastianBergmann\Type\FalseType;
 use src\core\DaoCore;
 
 /**
@@ -40,7 +41,8 @@ class PostModel
     {
         $posts = $this->dao->getData(
             "*",
-            "WHERE post_board_id=:post_board_id ORDER BY post_created_at DESC",
+            "WHERE post_board_id=:post_board_id AND post_parent IS NULL
+                ORDER BY post_created_at DESC",
             "post_board_id={$postBoardId}",
             10
         );

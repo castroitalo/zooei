@@ -8,7 +8,6 @@ use src\core\BaseControllerCore;
 use src\core\RequestCore;
 use src\core\ResponseCore;
 use src\models\BoardModel;
-use src\models\CommentModel;
 use src\models\PostModel;
 
 /**
@@ -19,112 +18,108 @@ use src\models\PostModel;
 class PostController extends BaseControllerCore
 {
     /**
-     * Extract new post data
-     *
-     * @param array $boardUri
-     * @param array $uploadImageInfo
-     * @param array $postText
-     * @return array|false
-     */
-    private function extractnewPostData(
-        array $boardUri,
-        array $uploadImageInfo,
-        array $postText
-    ): array|false {
-        if (
-            $boardUri === [] ||
-            empty($uploadImageInfo["post_image"]["name"]) ||
-            $postText === []
-        ) {
-            return false;
-        }
-
-        $boardObject = (new BoardModel())
-            ->getBoardByUri("/" . $boardUri["board"]);
-
-        if (is_object($boardObject)) {
-            $postBoardId = $boardObject->board_id;
-            $postOwner = generate_owner();
-            $postImagePath = generate_image_filename(
-                $uploadImageInfo["post_image"],
-                $postOwner
-            );
-            $postText = $postText["post_text"];
-
-            return [
-                "post_board_id" => $postBoardId,
-                "post_owner" => $postOwner,
-                "post_image" => $postImagePath,
-                "post_text" => $postText,
-                "post_created_at" => date("d/m/Y - H:i")
-            ];
-        }
-
-        return false;
-    }
-
-    /**
-     * Upload and register new post
-     *
-     * @return void
-     */
-    public function createNewPost(): void
-    {
-        $boardUri = RequestCore::getGetRequestBody();
-        $uploadImageInfo = RequestCore::getUploadBody();
-        $postText = RequestCore::getPostRequestBody();
-        $newPostData = $this->extractnewPostData(
-            $boardUri,
-            $uploadImageInfo,
-            $postText
-        );
-
-        if ($newPostData === false) {
-            $this->setNewFlash("Dados do post inválidos.", CONF_FLASH_DANGER);
-            ResponseCore::setResponseStatusCode(409);
-            ResponseCore::redirectTo("/" . $boardUri["board"]);
-        } else {
-            $newPost = (new PostModel())->createNewPost(
-                $newPostData,
-                $uploadImageInfo
-            );
-
-            if (is_string($newPost)) {
-                $this->setNewFlash($newPost, CONF_FLASH_DANGER);
-                ResponseCore::setResponseStatusCode(409);
-                ResponseCore::redirectTo("/" . $boardUri["board"]);
-            } else {
-                $this->setNewFlash("Post criado com sucesso.", CONF_FLASH_SUCCESS);
-                ResponseCore::redirectTo("/" . $boardUri["board"]);
-            }
-        }
-    }
-
-    /**
      * Render post page 
      *
      * @return void
      */
     public function postPage(): void
     {
-        $postOwner = RequestCore::getGetRequestBody();
-        $post = (new PostModel())
-            ->getPostByOwner($postOwner["owner"]);
-        $postComments = (new CommentModel()) 
-            ->getAllPostComments($postOwner["owner"]);
+        echo "POST PAGE";
+    }
 
-        if ($post === false || is_string($post)) {
-            ResponseCore::setResponseStatusCode(404);
-            ResponseCore::redirectTo("/pagenotfound");
+    /**
+     * Extract new post data
+     *
+     * @param array $getInfo
+     * @param array $uploadImageInfo
+     * @param array $postText
+     * @return array|false
+     */
+    private function extractnewPostData(
+        array $getInfo,
+        array $uploadImageInfo,
+        array $postText
+    ): array|false {
+        // Check if all data are coming correctly
+        if (
+            $getInfo === [] ||
+            empty($uploadImageInfo["post_image"]["name"]) ||
+            $postText === []
+        ) {
+            return false;
+        }
+
+        // Get the post's board
+        $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);
+
+        if (is_string($postBoard) || $postBoard === false) {
+            return false;
+        }
+
+        // Get new post needed data
+        $postBoardId = $postBoard->board_id;
+        $postParent = isset($getInfo["parent"])
+            ? $getInfo["parent"]
+            : null;
+        $postOwner = generate_owner();
+        $postImage = generate_image_filename(
+            $uploadImageInfo["post_image"],
+            $postOwner
+        );
+        $postText = $postText["post_text"];
+
+        // Mount the new post data
+        return [
+            "post_board_id" => $postBoardId,
+            "post_parent" => $postParent,
+            "post_owner" => $postOwner,
+            "post_image" => $postImage,
+            "post_text" => $postText,
+            "post_created_at" => date("d/m/Y - H:i:s")
+        ];
+    }
+
+    /**
+     * Create a new post
+     *
+     * @return void
+     */
+    public function createNewPost(): void
+    {
+        // Get base post info
+        $getInfo = RequestCore::getGetRequestBody();
+        $uploadImageInfo = RequestCore::getUploadBody();
+        $postText = RequestCore::getPostRequestBody();
+
+        // Get full formatted new post info
+        $newPostData = $this->extractnewPostData(
+            $getInfo,
+            $uploadImageInfo,
+            $postText
+        );
+
+        // If get formatted new post info fails
+        if ($newPostData === false) {
+            $this->setNewFlash("Falha ao criar nova postagem.", CONF_FLASH_DANGER);
+            ResponseCore::setResponseStatusCode(409);
+            ResponseCore::redirectTo("/" . $getInfo["board"]);
+
+        // If get formatted new post info succeed
         } else {
-            $this->controllerView->render(
-                "post.view",
-                [
-                    "post_title" => "Post",
-                    "post_data" => $post,
-                    "post_comments" => $postComments
-                ]
-            );
+
+            // Create a new post
+            $newPost = (new PostModel())
+                ->createNewPost($newPostData, $uploadImageInfo);
+        
+            // If create a new post fails
+            if (is_string($newPost)) {
+                $this->setNewFlash($newPost, CONF_FLASH_DANGER);
+                ResponseCore::setResponseStatusCode(409);
+                ResponseCore::redirectTo("/" . $getInfo["board"]);
+            }
+
+            $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
+            ResponseCore::redirectTo("/" . $getInfo["board"]);
         }
     }
 }

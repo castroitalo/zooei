@@ -4,6 +4,7 @@ USE zooei;
 CREATE TABLE IF NOT EXISTS zooei.posts_tbl (
     post_id INT AUTO_INCREMENT NOT NULL,
     post_board_id INT NOT NULL,
+    post_parent VARCHAR(65) NULL,
     post_owner VARCHAR(65) NOT NULL,
     post_image VARCHAR(80) NOT NULL,
     post_text TEXT NOT NULL,
