@@ -27,3 +27,28 @@
 .post-container .new-comment-form .btn-create-comment {
     margin-top: 1em;
 }
+
+.post-container .comments-list  {
+    width: 100%;
+}
+
+.post-container .comments-list .comment {
+    padding-bottom: 1em;
+    border-bottom: 1px solid var(--dark-grey);
+    margin-top: 1em;
+    display: flex;
+}
+
+.post-container .comments-list .comment-image {
+    margin-right: 1em;
+    width: 250px;
+    height: 250px;
+}
+
+.post-container .comments-list .comment-info .comment-created-at {
+    margin-top: .3em;
+}
+
+.post-container .comments-list .comment-info .comment-text {
+    margin-top: 1em;
+}

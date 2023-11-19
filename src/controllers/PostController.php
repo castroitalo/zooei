@@ -8,6 +8,7 @@ use src\core\BaseControllerCore;
 use src\core\RequestCore;
 use src\core\ResponseCore;
 use src\models\BoardModel;
+use src\models\CommentModel;
 use src\models\PostModel;
 
 /**
@@ -32,7 +33,7 @@ class PostController extends BaseControllerCore
     ): array|false {
         if (
             $boardUri === [] ||
-            empty($uploadImageInfo["required"]["required"]) ||
+            empty($uploadImageInfo["post_image"]["name"]) ||
             $postText === []
         ) {
             return false;
@@ -43,7 +44,7 @@ class PostController extends BaseControllerCore
 
         if (is_object($boardObject)) {
             $postBoardId = $boardObject->board_id;
-            $postOwner = generate_post_owner();
+            $postOwner = generate_owner();
             $postImagePath = generate_image_filename(
                 $uploadImageInfo["post_image"],
                 $postOwner
@@ -109,6 +110,8 @@ class PostController extends BaseControllerCore
         $postOwner = RequestCore::getGetRequestBody();
         $post = (new PostModel())
             ->getPostByOwner($postOwner["owner"]);
+        $postComments = (new CommentModel()) 
+            ->getAllPostComments($postOwner["owner"]);
 
         if ($post === false || is_string($post)) {
             ResponseCore::setResponseStatusCode(404);
@@ -118,14 +121,10 @@ class PostController extends BaseControllerCore
                 "post.view",
                 [
                     "post_title" => "Post",
-                    "post_data" => $post
+                    "post_data" => $post,
+                    "post_comments" => $postComments
                 ]
             );
         }
-    }
-
-    public function createNewComment(): void 
-    {
-
     }
 }

@@ -9,7 +9,7 @@ use src\core\SessionCore;
  *
  * @return string
  */
-function generate_post_owner(): string 
+function generate_owner(): string 
 {
     return hash("sha256", date("dmis") . (new SessionCore())->getSessionId());
 }
@@ -21,10 +21,10 @@ function generate_post_owner(): string
  * @param string $postOwner
  * @return string
  */
-function generate_image_filename(array $uploadImageInfo, string $postOwner): string 
+function generate_image_filename(array $uploadImageInfo, string $owner): string 
 {
     $postNameArray = explode(".", $uploadImageInfo["name"]);
-    $postNameArray[0] = $postOwner . "_image";
+    $postNameArray[0] = $owner . "_image";
 
     return implode(".", $postNameArray);
 }

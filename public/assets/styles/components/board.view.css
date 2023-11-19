@@ -25,37 +25,37 @@
     margin-top: 1em;
 }
 
-.board-container .posts-lists {
+.board-container .posts-list {
     width: 100%;
 }
 
-.board-container .posts-lists .post {
+.board-container .posts-list .post {
     padding-bottom: 1em;
     border-bottom: 1px solid var(--dark-grey);
     margin-top: 1em;
     display: flex;
 }
 
-.board-container .posts-lists .post .post-image{
+.board-container .posts-list .post .post-image{
     margin-right: 1em;
     width: 250px;
     height: 250px;
 }
 
-.board-container .posts-lists .post .post-info .post-owner a {
+.board-container .posts-list .post .post-info .post-owner a {
     text-decoration: none;
     font-weight: 500;
     color: var(--purple);
 }
 
-.board-container .posts-lists .post .post-info .post-owner a:hover {
+.board-container .posts-list .post .post-info .post-owner a:hover {
     text-decoration: underline;
 }
 
-.board-container .posts-lists .post .post-info .post-created-at {
+.board-container .posts-list .post .post-info .post-created-at {
     margin-top: .3em;
 }
 
-.board-container .posts-lists .post .post-info .post-text {
+.board-container .posts-list .post .post-info .post-text {
     margin-top: 1em;
 }

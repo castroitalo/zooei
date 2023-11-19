@@ -39,11 +39,7 @@ class PostModel
     public function getAllBoardPosts(int $postBoardId): array|false|string
     {
         $posts = $this->dao->getData(
-            "post_board_id, 
-                post_owner, 
-                post_image, 
-                post_text, 
-                post_created_at",
+            "*",
             "WHERE post_board_id=:post_board_id ORDER BY post_created_at DESC",
             "post_board_id={$postBoardId}",
             10

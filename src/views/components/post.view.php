@@ -28,4 +28,24 @@
 
         <button type="submit" class="btn btn-green btn-create-comment">Criar comentário</button> <!-- .btn .btn-green .btn-create-comment -->
     </form> <!-- .new-comment-form -->
+
+    <ul class="comments-list">
+
+        <?php foreach ($post_comments as $comment): ?>
+
+            <li class="comment">
+
+                <?php if (!is_null($comment->comment_image)): ?>
+                    
+                    <img src="<?= get_url("/assets/images/comments-images/" . $comment->comment_image); ?>" alt="comment-image" class="comment-image"> <!-- .comment-image -->
+                <?php endif; ?>
+
+                <div class="comment-info">
+                    
+                    <p class="comment-created-at">Cirado em: <?= $comment->comment_created_at; ?></p>
+                    <p class="comment-text"><?= $comment->comment_text; ?></p>
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ul>
 </div> <!-- .post-container -->

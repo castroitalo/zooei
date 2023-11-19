@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace tests\models;
 
-use Dotenv\Dotenv;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\RequiresPhp;
 use PHPUnit\Framework\Attributes\RequiresPhpunit;
