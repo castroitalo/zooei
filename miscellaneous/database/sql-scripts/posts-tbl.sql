@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS zooei.posts_tbl (
     post_board_id INT NOT NULL,
     post_parent VARCHAR(65) NULL,
     post_owner VARCHAR(65) NOT NULL,
-    post_image VARCHAR(80) NOT NULL,
+    post_image VARCHAR(80) NULL,
     post_text TEXT NOT NULL,
     post_created_at VARCHAR(25) NOT NULL,
 

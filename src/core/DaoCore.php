@@ -43,6 +43,43 @@ class DaoCore
     }
 
     /**
+     * Create new data on database
+     *
+     * @param array $newData
+     * @return integer|string
+     */
+    public function createData(array $newData): int|string
+    {
+        $this->databaseConnection->beginTransaction();
+
+        try {
+            // Extract data from $newData to SQL script
+            $fields = implode(", ", array_keys($newData));
+            $values = ":" . implode(", :", array_keys($newData));
+            $sql = "INSERT INTO {$this->databaseTable} ({$fields}) VALUES ({$values});";
+            $stmt = $this->databaseConnection->prepare($sql);
+
+            // If insertion succeed
+            if ($stmt->execute($newData)) {
+                $this->databaseConnection->commit();
+
+                // If insertion failed
+            } else {
+                $this->databaseConnection->rollBack();
+
+                return "Failed to create data. Try again later.";
+            }
+
+            return (int)$this->databaseConnection->lastInsertId();
+        } catch (PDOException $ex) {
+            error_log($ex->getMessage());
+            $this->databaseConnection->rollBack();
+
+            return "Failed to create data. Try again later.";
+        }
+    }
+
+    /**
      * Get data from database. It's possible to get based on a pagination logic 
      *
      * @param integer|null $limit
@@ -131,39 +168,44 @@ class DaoCore
     }
 
     /**
-     * Create new data on database
+     * Delete data from database
      *
-     * @param array $newData
-     * @return integer|string
+     * @param string $where
+     * @param string $whereParams
+     * @return true|string
      */
-    public function createData(array $newData): int|string
+    public function deleteData(string $where, string $whereParams): true|string
     {
         $this->databaseConnection->beginTransaction();
 
         try {
-            // Extract data from $newData to SQL script
-            $fields = implode(", ", array_keys($newData));
-            $values = ":" . implode(", :", array_keys($newData));
-            $sql = "INSERT INTO {$this->databaseTable} ({$fields}) VALUES ({$values});";
+            $sql = "DELETE FROM {$this->databaseTable} {$where}";
             $stmt = $this->databaseConnection->prepare($sql);
 
-            // If insertion succeed
-            if ($stmt->execute($newData)) {
+            parse_str($whereParams, $whereParamsArray);
+
+            foreach ($whereParamsArray as $key => $value) {
+                $valueType = is_string($value)
+                    ? PDO::PARAM_STR
+                    : PDO::PARAM_INT;
+
+                $stmt->bindValue(":{$key}", $value, $valueType);
+            }
+
+            if ($stmt->execute()) {
                 $this->databaseConnection->commit();
 
-            // If insertion failed
+                return true;
             } else {
                 $this->databaseConnection->rollBack();
 
-                return "Failed to create data. Try again later.";
+                return "Failed to delete data. Try again later.";
             }
-
-            return (int)$this->databaseConnection->lastInsertId();
         } catch (PDOException $ex) {
             error_log($ex->getMessage());
             $this->databaseConnection->rollBack();
 
-            return "Failed to create data. Try again later.";
+            return "Failed to delete data. Try again later.";
         }
     }
 

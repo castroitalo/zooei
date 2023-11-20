@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace src\core;
 
-use PDO;
-
 /**
  * Class App 
  * 
@@ -13,13 +11,6 @@ use PDO;
  */
 class App 
 {
-    /**
-     * App's database connection
-     *
-     * @var PDO
-     */
-    public PDO $databaseConnection;
-
     /**
      * App's router
      *
@@ -39,7 +30,6 @@ class App
      */
     public function __construct()
     {
-        $this->databaseConnection = DatabaseCore::getDatabaseConnection();
         $this->router = new RouterCore();
         $this->session = new SessionCore();
     }

@@ -41,13 +41,20 @@ class PostController extends BaseControllerCore
         array $postText
     ): array|false {
         // Check if all data are coming correctly
-        if (
-            $getInfo === [] ||
-            empty($uploadImageInfo["post_image"]["name"]) ||
-            $postText === []
-        ) {
+        if ($getInfo === [] || $postText === []) {
             return false;
         }
+
+        $postImage = null;
+
+        // If post is not a child from another post
+        if (!isset($getInfo["parent"])) {
+            
+            // Check if it has an image
+            if (empty($uploadImageInfo["post_image"]["name"])) {
+                return false;
+            }
+        } 
 
         // Get the post's board
         $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);
@@ -104,13 +111,13 @@ class PostController extends BaseControllerCore
             ResponseCore::setResponseStatusCode(409);
             ResponseCore::redirectTo("/" . $getInfo["board"]);
 
-        // If get formatted new post info succeed
+            // If get formatted new post info succeed
         } else {
 
             // Create a new post
             $newPost = (new PostModel())
                 ->createNewPost($newPostData, $uploadImageInfo);
-        
+
             // If create a new post fails
             if (is_string($newPost)) {
                 $this->setNewFlash($newPost, CONF_FLASH_DANGER);

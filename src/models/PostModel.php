@@ -63,7 +63,7 @@ class PostModel
             "WHERE post_owner=:post_owner",
             "post_owner={$postOwner}"
         );
-    
+
         return $post;
     }
 
@@ -88,6 +88,22 @@ class PostModel
     }
 
     /**
+     * Delete post based on it's ID
+     *
+     * @param integer $postId
+     * @return true|string
+     */
+    public function deletePost(int $postId): true|string
+    {
+        $deletedPost = $this->dao->deleteData(
+            "WHERE post_id=:post_id",
+            "post_id={$postId}"
+        );
+
+        return $deletedPost;
+    }
+
+    /**
      * Create new post
      *
      * @param array $newPostData
@@ -106,6 +122,8 @@ class PostModel
         $newPostImage = $this->uploadImagePost($postImageFileInfo, $newPostData["post_image"]);
 
         if ($newPostImage === false) {
+            $this->deletePost($newPost);
+
             return "Falha ao criar post.";
         }
 

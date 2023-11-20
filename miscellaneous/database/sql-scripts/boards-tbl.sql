@@ -37,7 +37,6 @@ INSERT INTO zooei.boards_tbl (
     ("intr", "/politica", "Política"),
     ("intr", "/fotografia", "Fotografia"),
     ("intr", "/design-grafico", "Design Gráfico"),
-    ("intr", "/papel-de-parede", "Papel de Parede"),
     ("intr", "/musica", "Música"),
     ("intr", "/faca-voce-mesmo", "Faça Você Mesmo"),
     ("brl", "/br", "Brasil (BR)"),

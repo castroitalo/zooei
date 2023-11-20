@@ -9,7 +9,7 @@ O maior imageboard brasileiro.
 ### Instalando o Zooei
 - Docker:
     - Construa a imagem docker: `docker build ./docker -t zooei/stable:1.0`
-    - Inicie o container docker com o docker compose: `docker composer up -d`
+    - Inicie o container docker com o docker compose: `docker compose up -d`
 - Iniciando o projeto:
     - Entre no banco de dados do projeto e execute os scripts SQL para criação do bando de dados e a inserção de dados base.
     - Entre no container docker: `docker container exec -it zooei-web-1 bash`
