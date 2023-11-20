@@ -1,5 +1,5 @@
 <!-- Inherits base HTML  -->
-<?php $this->layout("/../template/base.view", ["title" => "404"]); ?>
+<?php $this->layout("/../templates/base.view", ["title" => "404"]); ?>
 
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>

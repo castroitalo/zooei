@@ -24,7 +24,26 @@ class PostController extends BaseControllerCore
      */
     public function postPage(): void
     {
-        echo "POST PAGE";
+        $getInfo = RequestCore::getGetRequestBody();
+
+        if (!isset($getInfo["owner"])) {
+            ResponseCore::setResponseStatusCode(404);
+            ResponseCore::redirectTo("/pagenotfound");
+        }
+
+        $post = (new PostModel())->getPostByOwner($getInfo["owner"]);
+
+        if ($post === false || is_string($post)) {
+            ResponseCore::setResponseStatusCode(404);
+            ResponseCore::redirectTo("/pagenotfound");
+        }
+
+        $this->controllerView->render(
+            "post.view",
+            [
+                "post" => $post
+            ]
+        );
     }
 
     /**
@@ -49,12 +68,12 @@ class PostController extends BaseControllerCore
 
         // If post is not a child from another post
         if (!isset($getInfo["parent"])) {
-            
+
             // Check if it has an image
             if (empty($uploadImageInfo["post_image"]["name"])) {
                 return false;
             }
-        } 
+        }
 
         // Get the post's board
         $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);

@@ -19,3 +19,7 @@
     background-color: var(--green);
     color: var(--white);
 }
+
+.btn-create-post {
+    margin-top: .5em;
+}

@@ -15,7 +15,7 @@ Nossa missão é emancipar as pessoas da influência moral das grandes empresas 
 - No projeto é usado o padrão [PHP The Right Way](https://phptherightway.com/).
 - Toda mensagem de commit deve ser escrito em inglês.
 - Todo código fonte (inclusive comentários) deve ser escrito em inglês.
-- Todos os arquivos (exceto os arquivos de configuração) devem conter **strict_types=1**.
+- Todos os arquivos de PHP puro (exceto os arquivos de configuração) devem conter **strict_types=1**.
 
 ### Nosso escopo
 Temos como objetivo fornecer um site [imageboard](https://pt.wikipedia.org/wiki/Imageboard) específico para o Brasil. Qualquer coisa que não seja um [imageboard](https://pt.wikipedia.org/wiki/Imageboard) ou que não seja voltado para o Brasil está fora do escopo do projeto. Como o Projeto está coberto pela licença [GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.pt-br.html) este projeto pode ser usado como base para outro.

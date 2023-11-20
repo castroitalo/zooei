@@ -1,5 +1,5 @@
 <!-- Inherits base HTML  -->
-<?php $this->layout("/../template/base.view", ["title" => "Regras"]); ?>
+<?php $this->layout("/../templates/base.view", ["title" => "Regras"]); ?>
 
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>

@@ -1,0 +1,20 @@
+.post-container {
+    width: 100%;
+}
+
+.post-container .post {
+    border-top: 1px solid var(--dark-grey);
+    padding: 1em;
+}
+
+.post-container .post .post-image {
+    width: 250px;
+    height: 250px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    float: left;
+}
+
+.post-container .post .post-created-at {
+    margin-bottom: 1em;
+}

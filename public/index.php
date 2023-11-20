@@ -10,15 +10,10 @@ use src\controllers\BoardController;
 use src\controllers\HomeController;
 use src\controllers\PostController;
 use src\core\App;
-use src\models\PostModel;
 
 require_once __DIR__ . "/bootstrap.php";
 
 $app = new App();
-
-echo "<pre>";
-var_dump((new PostModel())->deletePost(1));
-echo "</pre>";
 
 // Home routes
 $app->router->get("/", [HomeController::class, "homepage"]);

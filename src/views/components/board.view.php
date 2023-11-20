@@ -1,5 +1,5 @@
 <!-- Inherits base HTML  -->
-<?php $this->layout("/../template/base.view", ["title" => $board_title]); ?>
+<?php $this->layout("/../templates/base.view", ["title" => $board_title]); ?>
 
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
@@ -14,22 +14,15 @@
     </header> <!-- .board-header -->
 
     <!-- Render flash is there is one -->
-    <?php if (has_session_key("flash_message")): ?>
+    <?php if (has_session_key("flash_message")) : ?>
         <?= get_flash_message(); ?>
     <?php endif; ?>
 
-    <form action="<?= get_url("/newpost?board={$board_uri}"); ?>" method="POST" enctype="multipart/form-data" class="new-post-form">
-
-        <textarea name="post_text" id="post-text" cols="30" rows="10" required placeholder="Seu texto aqui..." class="textarea post-text"></textarea> <!-- .textarea .post-text -->
-
-        <input type="file" name="post_image" id="board-image" required accept="image/*" class="post-image"> <!-- .post-image -->
-
-        <button type="submit" class="btn btn-green btn-create-post">Criar tópico</button> <!-- .btn .btn-green .btn-create-post -->
-    </form> <!-- .new-post-form -->
+    <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "board", "get_value" => $board_uri]); ?>
 
     <ul class="posts-list">
 
-        <?php foreach ($board_posts as $post): ?>
+        <?php foreach ($board_posts as $post) : ?>
 
             <li class="post">
 
