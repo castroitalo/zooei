@@ -20,7 +20,9 @@
     </div> <!-- .post -->
 
     <!-- New comment post form -->
-    <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "owner", "get_value" => $post->post_owner]); ?>
+    <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "parent", "get_value" => $post->post_owner]); ?>
+
+            
 </div> <!-- .post-container -->
 
 <!-- Importing scripts -->

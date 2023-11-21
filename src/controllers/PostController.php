@@ -26,6 +26,7 @@ class PostController extends BaseControllerCore
     {
         $getInfo = RequestCore::getGetRequestBody();
 
+        // If doesn't have a post owner on request
         if (!isset($getInfo["owner"])) {
             ResponseCore::setResponseStatusCode(404);
             ResponseCore::redirectTo("/pagenotfound");
@@ -33,7 +34,17 @@ class PostController extends BaseControllerCore
 
         $post = (new PostModel())->getPostByOwner($getInfo["owner"]);
 
+        // If failed to get post
         if ($post === false || is_string($post)) {
+            ResponseCore::setResponseStatusCode(404);
+            ResponseCore::redirectTo("/pagenotfound");
+        }
+
+        $commentsReplies = (new PostModel())
+            ->getAllCommentsReplies($getInfo["owner"]);
+
+        // If failed to get post's comments
+        if ($commentsReplies === false || is_string($commentsReplies)) {
             ResponseCore::setResponseStatusCode(404);
             ResponseCore::redirectTo("/pagenotfound");
         }
@@ -41,7 +52,8 @@ class PostController extends BaseControllerCore
         $this->controllerView->render(
             "post.view",
             [
-                "post" => $post
+                "post" => $post,
+                "comments" => $commentsReplies
             ]
         );
     }
@@ -64,8 +76,6 @@ class PostController extends BaseControllerCore
             return false;
         }
 
-        $postImage = null;
-
         // If post is not a child from another post
         if (!isset($getInfo["parent"])) {
 
@@ -75,23 +85,29 @@ class PostController extends BaseControllerCore
             }
         }
 
-        // Get the post's board
-        $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);
+        $postOwner = generate_owner();
+        $postImage = empty($uploadImageInfo["post_image"]["name"])
+            ? null
+            : generate_image_filename($uploadImageInfo["post_image"], $postOwner);
+        $postBoardId = null;
 
-        if (is_string($postBoard) || $postBoard === false) {
-            return false;
+        // If post is not child from another post
+        if (!isset($getInfo["parent"])) {
+
+            // Get the post's board
+            $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);
+
+            if (is_string($postBoard) || $postBoard === false) {
+                return false;
+            }
+
+            $postBoardId = $postBoard->board_id;
         }
 
         // Get new post needed data
-        $postBoardId = $postBoard->board_id;
         $postParent = isset($getInfo["parent"])
             ? $getInfo["parent"]
             : null;
-        $postOwner = generate_owner();
-        $postImage = generate_image_filename(
-            $uploadImageInfo["post_image"],
-            $postOwner
-        );
         $postText = $postText["post_text"];
 
         // Mount the new post data
@@ -144,8 +160,17 @@ class PostController extends BaseControllerCore
                 ResponseCore::redirectTo("/" . $getInfo["board"]);
             }
 
-            $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
-            ResponseCore::redirectTo("/" . $getInfo["board"]);
+            // If the post was an original post
+            if (isset($getInfo["board"])) {
+                $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
+                ResponseCore::redirectTo("/" . $getInfo["board"]);
+            } 
+
+            // If the post was a child post (comments and replies)
+            if (isset($getInfo["parent"])) {
+                $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
+                ResponseCore::redirectTo("/post?owner=" . $getInfo["parent"]);
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 .board-container {
     width: 100%;
+    margin-bottom: 1em;
 }
 
 .board-container .board-header {

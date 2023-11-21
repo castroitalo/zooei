@@ -18,6 +18,7 @@
         <?= get_flash_message(); ?>
     <?php endif; ?>
 
+    <!-- Insert new post form -->
     <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "board", "get_value" => $board_uri]); ?>
 
     <ul class="posts-list">

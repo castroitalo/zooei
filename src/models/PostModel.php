@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace src\models;
 
-use SebastianBergmann\Type\FalseType;
 use src\core\DaoCore;
 
 /**
@@ -51,6 +50,25 @@ class PostModel
     }
 
     /**
+     * Get all comments and replies for a post
+     *
+     * @param string $postParent
+     * @return array|false|string
+     */
+    public function getAllCommentsReplies(string $postParent): array|false|string 
+    {
+        $commentsReplies = $this->dao->getData(
+            "*",
+            "WHERE post_parent=:post_parent AND post_parent IS NOT NULL
+                ORDER BY post_created_at DESC",
+            "post_parent={$postParent}",
+            10
+        );
+
+        return $commentsReplies;
+    }
+
+    /**
      * Get post by it's owner hash
      *
      * @param string $postOwner
@@ -65,6 +83,22 @@ class PostModel
         );
 
         return $post;
+    }
+
+    /**
+     * Delete post based on it's ID
+     *
+     * @param integer $postId
+     * @return true|string
+     */
+    public function deletePost(int $postId): true|string
+    {
+        $deletedPost = $this->dao->deleteData(
+            "WHERE post_id=:post_id",
+            "post_id={$postId}"
+        );
+
+        return $deletedPost;
     }
 
     /**
@@ -88,22 +122,6 @@ class PostModel
     }
 
     /**
-     * Delete post based on it's ID
-     *
-     * @param integer $postId
-     * @return true|string
-     */
-    public function deletePost(int $postId): true|string
-    {
-        $deletedPost = $this->dao->deleteData(
-            "WHERE post_id=:post_id",
-            "post_id={$postId}"
-        );
-
-        return $deletedPost;
-    }
-
-    /**
      * Create new post
      *
      * @param array $newPostData
@@ -118,13 +136,17 @@ class PostModel
             return "Falha ao criar post.";
         }
 
-        // Upload post image file
-        $newPostImage = $this->uploadImagePost($postImageFileInfo, $newPostData["post_image"]);
+        // Check if there is an image to post
+        if (!is_null($newPostData["post_image"])) {
 
-        if ($newPostImage === false) {
-            $this->deletePost($newPost);
+            // Upload post image file
+            $newPostImage = $this->uploadImagePost($postImageFileInfo, $newPostData["post_image"]);
 
-            return "Falha ao criar post.";
+            if ($newPostImage === false) {
+                $this->deletePost($newPost);
+
+                return "Falha ao criar post.";
+            }
         }
 
         return $newPost;
