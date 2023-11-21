@@ -4,6 +4,7 @@
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/post.view.css"); ?>">
+<link rel="stylesheet" href="<?= get_url("/assets/styles/components/posts-list.view.css"); ?>">
 <?php $this->stop(); ?>
 
 <div class="post-container">
@@ -21,6 +22,9 @@
 
     <!-- New comment post form -->
     <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "parent", "get_value" => $post->post_owner]); ?>
+
+    <!-- Listing all post's comments -->
+    <?php $this->insert("/../templates/posts-list.view", ["posts" => $comments]); ?>
 </div> <!-- .post-container -->
 
 <!-- Importing scripts -->

@@ -1,0 +1,34 @@
+.posts-list {
+    width: 100%;
+    border-bottom: 1px solid var(--dark-grey);
+}
+
+.posts-list .post {
+    padding-bottom: 1em;
+    margin-top: 1em;
+    display: flex;
+}
+
+.posts-list .post .post-image {
+    margin-right: 1em;
+    width: 250px;
+    height: 250px;
+}
+
+.posts-list .post .post-info .post-owner a {
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--purple);
+}
+
+.posts-list .post .post-info .post-owner a:hover {
+    text-decoration: underline;
+}
+
+.posts-list .post .post-info .post-created-at {
+    margin-top: .3em;
+}
+
+.posts-list .post .post-info .post-text {
+    margin-top: 1em;
+}

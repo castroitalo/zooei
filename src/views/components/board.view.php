@@ -4,6 +4,7 @@
 <!-- Importing styles -->
 <?php $this->start("styles"); ?>
 <link rel="stylesheet" href="<?= get_url("/assets/styles/components/board.view.css"); ?>">
+<link rel="stylesheet" href="<?= get_url("/assets/styles/components/posts-list.view.css"); ?>">
 <?php $this->stop(); ?>
 
 <div class="board-container">
@@ -21,24 +22,8 @@
     <!-- Insert new post form -->
     <?php $this->insert("/../templates/new-post-form.view", ["get_key" => "board", "get_value" => $board_uri]); ?>
 
-    <ul class="posts-list">
-
-        <?php foreach ($board_posts as $post) : ?>
-
-            <li class="post">
-
-                <img src="<?= get_url("/assets/images/posts-images/" . $post->post_image); ?>" alt="post-image" class="post-image"> <!-- .post-image -->
-
-                <div class="post-info">
-
-                    <h3 class="post-owner">&#10551; <a href="<?= get_url("/post?owner=" . $post->post_owner); ?>" target="_blank">Ir para o post.</a></h3> <!-- .post-owner -->
-
-                    <p class="post-created-at">Criado em: <?= $post->post_created_at; ?></p> <!-- .post-created-at -->
-                    <p class="post-text"><?= limit_words($post->post_text, 100); ?></p> <!-- .post-text -->
-                </div> <!-- .post-info -->
-            </li> <!-- .post -->
-        <?php endforeach; ?>
-    </ul> <!-- .posts-list -->
+    <!-- Insert posts list -->
+    <?php $this->insert("/../templates/posts-list.view", ["posts" => $board_posts]); ?>
 </div> <!-- .board-container -->
 
 <!-- Importing scripts -->
