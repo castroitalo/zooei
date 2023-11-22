@@ -117,7 +117,8 @@ class PostController extends BaseControllerCore
             "post_owner" => $postOwner,
             "post_image" => $postImage,
             "post_text" => $postText,
-            "post_created_at" => date("d/m/Y - H:i:s")
+            "post_created_at" => date("d/m/Y - H:i:s"),
+            "post_client_ip_addr" => RequestCore::getClientIpAddrress()
         ];
     }
 

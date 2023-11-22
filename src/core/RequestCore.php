@@ -12,6 +12,16 @@ namespace src\core;
 class RequestCore
 {
     /**
+     * Get client's IP address
+     *
+     * @return string
+     */
+    public static function getClientIpAddrress(): string 
+    {
+        return $_SERVER["REMOTE_ADDR"];
+    }
+
+    /**
      * Get route requested URI
      *
      * @return string
