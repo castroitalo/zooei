@@ -4,5 +4,5 @@
 
     <input type="file" name="post_image" id="board-image" accept="image/*" class="post-image"> <!-- .post-image -->
 
-    <button type="submit" class="btn btn-green btn-create-post">Criar tópico</button> <!-- .btn .btn-green .btn-create-post -->
+    <button type="submit" class="btn btn-green btn-create-post">Criar postagem</button> <!-- .btn .btn-green .btn-create-post -->
 </form> <!-- .new-post-form -->

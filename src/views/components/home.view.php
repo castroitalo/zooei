@@ -15,7 +15,6 @@
             <li class="option"><a href="<?= get_url("/rules"); ?>" target="_blank">Regras</a></li> <!-- .option -->
             <li class="option"><a href="https://github.com/devcastroitalo/zooei" target="_blank">Contribua</a></li> <!-- .option -->
             <li class="option"><a href="/support" target="_blank">Apoie</a></li> <!-- .option -->
-            <li class="option"><a href="/advertise" target="_blank">Anuncie</a></li> <!-- .option -->
         </ul> <!-- .options-container -->
     </div> <!-- .home-options -->
 

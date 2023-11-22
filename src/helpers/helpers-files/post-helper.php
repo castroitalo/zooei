@@ -28,3 +28,14 @@ function generate_image_filename(array $uploadImageInfo, string $owner): string
 
     return implode(".", $postNameArray);
 }
+
+function anonymize_client_ip_address(string $clientIpAddess): string 
+{
+    $octets = explode(".", $clientIpAddess);
+
+    array_pop($octets);
+
+    $octets[] = "O";
+
+    return hash("sha256", implode(".", $octets));
+}

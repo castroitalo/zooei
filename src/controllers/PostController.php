@@ -121,7 +121,7 @@ class PostController extends BaseControllerCore
             "post_image" => $postImage,
             "post_text" => $postText,
             "post_created_at" => date("d/m/Y - H:i:s"),
-            "post_client_ip_addr" => RequestCore::getClientIpAddrress()
+            "post_client_ip_addr" => anonymize_client_ip_address(RequestCore::getClientIpAddrress())
         ];
     }
 
