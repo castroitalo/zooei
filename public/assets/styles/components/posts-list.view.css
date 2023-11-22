@@ -1,20 +1,20 @@
 .posts-list {
     width: 100%;
     margin-top: 1em;
-    border-bottom: 1px solid var(--dark-grey);
 }
 
 .posts-list .post {
-    border-top: 1px solid var(--dark-grey);
-    padding-bottom: 1em;
-    padding-top: 1em;
+    padding: 1em;
+    margin-top: 1em;
     display: flex;
+    background-color: var(--darken-grey);
+    border: .5px solid var(--dark-grey);
 }
 
 .posts-list .post .post-image {
-    margin-right: 1em;
     width: 250px;
     height: 250px;
+    margin-right: 1em;
 }
 
 .posts-list .post .post-info .post-owner a {
