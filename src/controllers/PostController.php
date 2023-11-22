@@ -120,8 +120,7 @@ class PostController extends BaseControllerCore
             "post_owner" => $postOwner,
             "post_image" => $postImage,
             "post_text" => $postText,
-            "post_created_at" => date("d/m/Y - H:i:s"),
-            "post_client_ip_addr" => anonymize_client_ip_address(RequestCore::getClientIpAddrress())
+            "post_created_at" => date("d/m/Y - H:i:s")
         ];
     }
 
@@ -156,6 +155,7 @@ class PostController extends BaseControllerCore
             // Create a new post
             $newPost = (new PostModel())
                 ->createNewPost($newPostData, $uploadImageInfo);
+            $newPostOwnerIpAddress = RequestCore::getClientIpAddrress();
 
             // If create a new post fails
             if (is_string($newPost)) {
@@ -167,12 +167,14 @@ class PostController extends BaseControllerCore
             // If the post was an original post
             if (isset($getInfo["board"])) {
                 $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
+                error_log("Owner: {$newPostData["post_owner"]} - {$newPostOwnerIpAddress}");
                 ResponseCore::redirectTo("/" . $getInfo["board"] . "?page=0");
             } 
 
             // If the post was a child post (comments and replies)
             if (isset($getInfo["parent"])) {
                 $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
+                error_log("Owner: {$newPostData["post_owner"]} - {$newPostOwnerIpAddress}");
                 ResponseCore::redirectTo("/post?owner=" . $getInfo["parent"] . "&page=0");
             }
         }
