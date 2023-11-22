@@ -25,6 +25,12 @@
 
     <!-- Listing all post's comments -->
     <?php $this->insert("/../templates/posts-list.view", ["posts" => $comments]); ?>
+
+    <div class="paginator">
+
+        <a href="<?= ($post_page - 1) < 0 ? get_url("/post?owner={$post_owner}&page={$post_page}") : get_url("/post?owner={$post_owner}&page=" . $post_page - 1); ?>" class="paginator-option">&#10096; Anterior</a> <!-- .paginator-option -->
+        <a href="<?= get_url("/post?owner={$post_owner}&page=" . $post_page + 1); ?>" class="paginator-option">Próximo &#10097;</a> <!-- .paginator-option -->
+    </div> <!-- .paginator -->
 </div> <!-- .post-container -->
 
 <!-- Importing scripts -->

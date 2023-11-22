@@ -36,14 +36,14 @@ class PostModel
      * @param integer $postBoardId
      * @return array|false|string
      */
-    public function getAllBoardPosts(int $postBoardId): array|false|string
+    public function getAllBoardPosts(int $postBoardId, int $postBoardLimit): array|false|string
     {
         $posts = $this->dao->getData(
             "*",
             "WHERE post_board_id=:post_board_id AND post_parent IS NULL
                 ORDER BY post_created_at DESC",
             "post_board_id={$postBoardId}",
-            10
+            $postBoardLimit, 10
         );
 
         return $posts;
@@ -55,14 +55,14 @@ class PostModel
      * @param string $postParent
      * @return array|false|string
      */
-    public function getAllCommentsReplies(string $postParent): array|false|string 
+    public function getAllCommentsReplies(string $postParent, $commentsRepliesLimit): array|false|string 
     {
         $commentsReplies = $this->dao->getData(
             "*",
             "WHERE post_parent=:post_parent AND post_parent IS NOT NULL
                 ORDER BY post_created_at DESC",
             "post_parent={$postParent}",
-            10
+            $commentsRepliesLimit, 10
         );
 
         return $commentsReplies;

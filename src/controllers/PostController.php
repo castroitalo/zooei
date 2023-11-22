@@ -40,8 +40,9 @@ class PostController extends BaseControllerCore
             ResponseCore::redirectTo("/pagenotfound");
         }
 
+        $commentsRepliesLimit = $getInfo["page"] * 10;
         $commentsReplies = (new PostModel())
-            ->getAllCommentsReplies($getInfo["owner"]);
+            ->getAllCommentsReplies($getInfo["owner"], $commentsRepliesLimit);
 
         // If failed to get post's comments
         if ($commentsReplies === false || is_string($commentsReplies)) {
@@ -53,6 +54,8 @@ class PostController extends BaseControllerCore
             "post.view",
             [
                 "post" => $post,
+                "post_owner" => $getInfo["owner"],
+                "post_page" => $getInfo["page"],
                 "comments" => $commentsReplies
             ]
         );
@@ -164,13 +167,13 @@ class PostController extends BaseControllerCore
             // If the post was an original post
             if (isset($getInfo["board"])) {
                 $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
-                ResponseCore::redirectTo("/" . $getInfo["board"]);
+                ResponseCore::redirectTo("/" . $getInfo["board"] . "?page=0");
             } 
 
             // If the post was a child post (comments and replies)
             if (isset($getInfo["parent"])) {
                 $this->setNewFlash("Postagem criada com sucesso.", CONF_FLASH_SUCCESS);
-                ResponseCore::redirectTo("/post?owner=" . $getInfo["parent"]);
+                ResponseCore::redirectTo("/post?owner=" . $getInfo["parent"] . "&page=0");
             }
         }
     }

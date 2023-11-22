@@ -26,14 +26,18 @@ class BoardController extends BaseControllerCore
         // Get requested board
         $requestedBoard = (new BoardModel())
             ->getBoardByUri(RequestCore::getRequestUri());
+        $boardPage = RequestCore::getGetRequestBody();
+        $boardPostsLimit = (int)$boardPage["page"] * 10;
+        $boardPosts = (new PostModel())
+            ->getAllBoardPosts($requestedBoard->board_id, $boardPostsLimit);
 
         $this->controllerView->render(
             "board.view",
             [
                 "board_title" => $requestedBoard->board_title,
                 "board_uri" => ltrim($requestedBoard->board_uri, "/"),
-                "board_posts" => (new PostModel())
-                    ->getAllBoardPosts($requestedBoard->board_id)
+                "board_posts" => $boardPosts,
+                "board_page" => (int)$boardPage["page"]
             ]
         );
     }

@@ -24,6 +24,12 @@
 
     <!-- Insert posts list -->
     <?php $this->insert("/../templates/posts-list.view", ["posts" => $board_posts]); ?>
+
+    <div class="paginator">
+
+        <a href="<?= ($board_page - 1) < 0 ? get_url("/{$board_uri}?page={$board_page}") : get_url("/{$board_uri}?page=" . $board_page - 1); ?>" class="paginator-option">&#10096; Anterior</a> <!-- .paginator-option -->
+        <a href="<?= get_url("/{$board_uri}?page=" . $board_page + 1); ?>" class="paginator-option">Próximo &#10097;</a> <!-- .paginator-option -->
+    </div> <!-- .paginator -->
 </div> <!-- .board-container -->
 
 <!-- Importing scripts -->

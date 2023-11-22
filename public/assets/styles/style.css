@@ -26,6 +26,20 @@ body {
     width: 100%;
 }
 
+.paginator {
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.paginator .paginator-option {
+    background-color: var(--blue);
+    padding: 1em;
+    text-decoration: none;
+    color: var(--white);
+}
+
 @media screen and (max-width: 768px) {
     .main {
         width: 100%;

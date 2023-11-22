@@ -33,7 +33,7 @@
             </header> <!-- .categories-header -->
 
             <?php foreach (get_interests_boards() as $interestCategory) : ?>
-                <li class="category"><a href="<?= get_url($interestCategory->board_uri) ?>"><?= $interestCategory->board_title; ?></a></li> <!-- .category -->
+                <li class="category"><a href="<?= get_url($interestCategory->board_uri . "?page=0") ?>"><?= $interestCategory->board_title; ?></a></li> <!-- .category -->
             <?php endforeach; ?>
         </ul> <!-- .board-categories .interests -->
 
@@ -44,7 +44,7 @@
             </header> <!-- .categories-header -->
 
             <?php foreach (get_states_boards() as $statesCategory) : ?>
-                <li class="category"><a href="<?= get_url($statesCategory->board_uri) ?>"><?= $statesCategory->board_title; ?></a></li> <!-- .category -->
+                <li class="category"><a href="<?= get_url($statesCategory->board_uri . "?page=0") ?>"><?= $statesCategory->board_title; ?></a></li> <!-- .category -->
             <?php endforeach; ?>
         </ul> <!-- .board-categories .states -->
     </div> <!-- .board-list -->
