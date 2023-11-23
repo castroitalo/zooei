@@ -1,4 +1,4 @@
-# Zooei (EM DESENVOLVIMENTO)
+# Zooei
 O maior imageboard brasileiro.
 
 ![zooei](https://github.com/devcastroitalo/zooei/blob/main/miscellaneous/images/print_homepage.png)

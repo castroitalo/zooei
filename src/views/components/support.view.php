@@ -15,6 +15,10 @@
 
     <div class="support-options">
 
-        <p>TODO</p>
+        <h3>Caso você puder e quiser, ajude o site a se manter doando para a chave pix:</h3>
+
+        <br>
+
+        <p class="pix-key"><?= $pix_key; ?></p>
     </div> <!-- .support-options -->
 </div> <!-- .support-container -->

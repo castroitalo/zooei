@@ -53,17 +53,9 @@ class HomeController extends BaseControllerCore
      */
     public function supportPage(): void
     {
-        $this->controllerView->render("support.view");
-    }
+        $pixKey = $_ENV["SUP_PIX_KEY"];
 
-    /**
-     * Render advertise page
-     *
-     * @return void
-     */
-    public function advertisePage(): void
-    {
-        $this->controllerView->render("advertise.view");
+        $this->controllerView->render("support.view", ["pix_key" => $pixKey]);
     }
 
     /**

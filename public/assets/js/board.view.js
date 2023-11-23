@@ -1,5 +1,5 @@
 jQuery(function ($) {
-    
+
     // Check if data is being sent correctly
     $(".btn-create-post").on("click", function (e) {
         let postText = $("#post-text");
