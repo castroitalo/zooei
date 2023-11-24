@@ -7,6 +7,7 @@ Se quiser contribuir para esse projeto primeiro notifique suas mudanças pelo ab
 2. Atualize o [README](https://github.com/devcastroitalo/zooei/blob/main/README.md) caso necessário.
 3. Lembre-se de atualizar a versao do projeto.
 
+
 ## Código de conduta
 ### Nossa missão
 Nossa missão é emancipar as pessoas da influência moral das grandes empresas de tecnologia. Não podemos verdadeiramente nos considerar livres se nossos meios de informação e expressão de opiniões são controlados por entidades estrangeiras. O Brasil, com sua magnitude, merece ter soberania em suas plataformas de comunicação. Possuímos programadores habilidosos, talentos excepcionais e uma riqueza de criatividade. É hora de consolidar nossa independência no universo do software, utilizando os recursos que já possuímos. A construção é possível, basta agir.
@@ -16,6 +17,29 @@ Nossa missão é emancipar as pessoas da influência moral das grandes empresas 
 - Toda mensagem de commit deve ser escrito em inglês.
 - Todo código fonte (inclusive comentários) deve ser escrito em inglês.
 - Todos os arquivos de PHP puro (exceto os arquivos de configuração) devem conter **strict_types=1**.
+- Todas as strings devem ser definidas com aspas duplas (""):
+    - Certo:
+    ```
+    $mensagem = "ola mundo";
+    ```
+    - Errado:
+    ```
+    $mensagem = 'Ola mundo'; 
+    ```
+- Funções, métodos, classes, interfaces, e traits deve usar as chaves na linha abaixo de sua definição:
+    - Certo:
+    ```
+    function uma_funcao(): string
+    {
+        return "Ola mundo";
+    }
+    ```
+    - Errado:
+    ```
+    function uma_funcao(): string {
+        return "Ola mundo";
+    }
+    ```
 
 ### Nosso escopo
 Temos como objetivo fornecer um site [imageboard](https://pt.wikipedia.org/wiki/Imageboard) específico para o Brasil. Qualquer coisa que não seja um [imageboard](https://pt.wikipedia.org/wiki/Imageboard) ou que não seja voltado para o Brasil está fora do escopo do projeto. Como o Projeto está coberto pela licença [GPLv3](https://www.gnu.org/licenses/quick-guide-gplv3.pt-br.html) este projeto pode ser usado como base para outro.
