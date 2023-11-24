@@ -24,9 +24,9 @@ Nossa missão é emancipar as pessoas da influência moral das grandes empresas 
     ```
     - Errado:
     ```
-    $mensagem = 'Ola mundo'; 
+    $mensagem = 'ola mundo'; 
     ```
-- Funções, métodos, classes, interfaces, e traits deve usar as chaves na linha abaixo de sua definição:
+- Funções, métodos, classes, interfaces, e traits devem usar as chaves na linha abaixo de sua assinatura:
     - Certo:
     ```
     function uma_funcao(): string
