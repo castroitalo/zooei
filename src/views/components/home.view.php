@@ -70,5 +70,5 @@
 
 <!-- Importing scripts -->
 <?php $this->start("scripts"); ?>
-<script src="<?= get_url("/assets/js/home.view.js"); ?>"></script>
+<script src="<?= get_url("/assets/js/components/home.view.js"); ?>"></script>
 <?php $this->stop(); ?>

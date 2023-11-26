@@ -35,5 +35,5 @@
 
 <!-- Importing scripts -->
 <?php $this->start("scripts"); ?>
-<script src="<?= get_url("/assets/js/post.view.js"); ?>"></script>
+<script src="<?= get_url("/assets/js/components/post.view.js"); ?>"></script>
 <?php $this->stop(); ?>
