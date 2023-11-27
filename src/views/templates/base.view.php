@@ -30,6 +30,8 @@
 
     <div class="main">
 
+        <p class="copyright">2023® Todos os direitos reservados - Zooei</p>
+
         <header class="header">
 
             <img src="<?= get_url("/assets/images/icon.png"); ?>" alt="www.zooei.com.br" class="header-icon"> <!-- .header-icon -->
@@ -47,6 +49,7 @@
             <?= $this->section("content"); ?>
         </section> <!-- .content -->
     </div> <!-- .main -->
+
 
     <!-- Importing scripts files -->
     <script src="<?= get_url("/assets/js/jQuery/jquery-3.7.1.js"); ?>"></script>

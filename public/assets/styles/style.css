@@ -8,6 +8,12 @@ body {
     margin: 0 auto;
 }
 
+.copyright {
+    text-align: center;
+    font-size: .8em;
+    margin-top: 1em;
+}
+
 .main .header {
     text-align: center;
 }
