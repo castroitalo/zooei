@@ -22,12 +22,10 @@ class BoardModel
 
     /**
      * BoardModel::__construct
-     *
-     * @param DaoCore|null $dao
      */
-    public function __construct(?DaoCore $dao = null)
+    public function __construct(?string $databaseTable = null)
     {
-        $this->dao = $dao ?? new DaoCore($_ENV["DB_BOARDS_TBL"]);
+        $this->dao = new DaoCore($databaseTable ?? $_ENV["DB_BOARDS_TBL"]);
     }
 
     /**
@@ -45,7 +43,13 @@ class BoardModel
         ?int $limit = null,
         ?int $offset = null
     ): array|false|string {
-        return $this->dao->getData($columns, $where, $whereParams, $limit, $offset);
+        $boards = $this->dao->getData($columns, $where, $whereParams, $limit, $offset);
+
+        if (is_string($boards)) {
+            return "Falha ao carregar interesses. Tente novamente mais tarde";
+        }
+
+        return $boards;
     }
 
     /**
