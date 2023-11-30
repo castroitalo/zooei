@@ -12,8 +12,7 @@ use src\helpers\SessionManagerHelper;
  */
 function get_session_value(string $session_key): mixed
 {
-    return SessionManagerHelper::getSessionCoreInstance()
-        ->getSessionValue($session_key);
+    return SessionManagerHelper::getSessionCoreInstance()->getSessionValue($session_key);
 }
 
 /**
@@ -25,8 +24,7 @@ function get_session_value(string $session_key): mixed
  */
 function set_session_key(string $session_key, string $session_value): void 
 {
-    SessionManagerHelper::getSessionCoreInstance()
-        ->setSessionValue($session_key, $session_value);
+    SessionManagerHelper::getSessionCoreInstance()->setSessionValue($session_key, $session_value);
 }
 
 /**
@@ -37,8 +35,7 @@ function set_session_key(string $session_key, string $session_value): void
  */
 function unset_session_value(string $session_key): void 
 {
-    SessionManagerHelper::getSessionCoreInstance()
-        ->unsetSessionValue($session_key);
+    SessionManagerHelper::getSessionCoreInstance()->unsetSessionValue($session_key);
 }
 
 /**
@@ -49,8 +46,7 @@ function unset_session_value(string $session_key): void
  */
 function has_session_key(string $session_key): bool
 {
-    return SessionManagerHelper::getSessionCoreInstance()
-        ->hasSessionKey($session_key);
+    return SessionManagerHelper::getSessionCoreInstance()->hasSessionKey($session_key);
 }
 
 /**

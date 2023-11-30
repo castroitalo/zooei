@@ -69,7 +69,7 @@ class DatabaseCore
             } catch (PDOException $ex) {
                 error_log($ex->getMessage());
 
-                return "<p class='error-message'>This service is currently unvaliable. Please Try again later.</p>";
+                return "This service is currently unvaliable. Please Try again later.";
             }
         }
 

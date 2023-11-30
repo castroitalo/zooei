@@ -7,16 +7,17 @@ namespace src\controllers;
 use src\core\BaseControllerCore;
 use src\core\RequestCore;
 use src\core\ResponseCore;
-use src\models\BoardModel;
-use src\models\PostModel;
 
 /**
  * Class PostController
  * 
  * @package src\controllers
  */
-class PostController extends BaseControllerCore
+class PostController
 {
+    // Base trait
+    use BaseControllerCore;
+
     /**
      * Render post page 
      *
@@ -32,7 +33,7 @@ class PostController extends BaseControllerCore
             ResponseCore::redirectTo("/pagenotfound");
         }
 
-        $post = (new PostModel())->getPostByOwner($getInfo["owner"]);
+        $post = $this->app->postModel->getPostByOwner($getInfo["owner"]);
 
         // If failed to get post
         if ($post === false || is_string($post)) {
@@ -41,8 +42,7 @@ class PostController extends BaseControllerCore
         }
 
         $commentsRepliesLimit = $getInfo["page"] * 10;
-        $commentsReplies = (new PostModel())
-            ->getAllCommentsReplies($getInfo["owner"], $commentsRepliesLimit);
+        $commentsReplies = $this->app->postModel->getAllCommentsReplies($getInfo["owner"], $commentsRepliesLimit);
 
         // If failed to get post's comments
         if ($commentsReplies === false || is_string($commentsReplies)) {
@@ -50,7 +50,7 @@ class PostController extends BaseControllerCore
             ResponseCore::redirectTo("/pagenotfound");
         }
 
-        $this->controllerView->render(
+        $this->app->viewCore->render(
             "post.view",
             [
                 "post" => $post,
@@ -69,11 +69,7 @@ class PostController extends BaseControllerCore
      * @param array $postText
      * @return array|false
      */
-    private function extractnewPostData(
-        array $getInfo,
-        array $uploadImageInfo,
-        array $postText
-    ): array|false {
+    private function extractnewPostData(array $getInfo, array $uploadImageInfo, array $postText): array|false {
         // Check if all data are coming correctly
         if ($getInfo === [] || $postText === []) {
             return false;
@@ -98,7 +94,7 @@ class PostController extends BaseControllerCore
         if (!isset($getInfo["parent"])) {
 
             // Get the post's board
-            $postBoard = (new BoardModel())->getBoardByUri("/" . $getInfo["board"]);
+            $postBoard = $this->app->boardModel->getBoardByUri("/" . $getInfo["board"]);
 
             if (is_string($postBoard) || $postBoard === false) {
                 return false;
@@ -153,8 +149,7 @@ class PostController extends BaseControllerCore
         } else {
 
             // Create a new post
-            $newPost = (new PostModel())
-                ->createNewPost($newPostData, $uploadImageInfo);
+            $newPost = $this->app->postModel->createNewPost($newPostData, $uploadImageInfo);
             $newPostOwnerIpAddress = RequestCore::getClientIpAddrress();
 
             // If create a new post fails

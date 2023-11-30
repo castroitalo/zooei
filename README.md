@@ -11,7 +11,7 @@ O maior imageboard brasileiro.
     - Construa a imagem docker: `docker build ./docker -t zooei/stable:1.0`
     - Inicie o container docker com o docker compose: `docker compose up -d`
 - Iniciando o projeto:
-    - Entre no banco de dados do projeto e execute os scripts SQL para criação do bando de dados e a inserção de dados base.
+    - Entre no banco de dados do projeto e execute os scripts SQL (localizados na pasta **miscellaneous/database**) para criação do bando de dados e a inserção de dados base.
     - Entre no container docker: `docker container exec -it zooei-web-1 bash`
     - Instale as dependências do projeto com o composer: `composer update`
     - Crie um arquivo chamado **.env** na raiz do projeto usando o arquivo **.env.template** e preencha os campos.

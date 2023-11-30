@@ -95,8 +95,7 @@ class PostModelTest extends TestCase
         array $imageUploadInfo,
         int|string $expect
     ): void {
-        $this->daoCoreMock->expects($this->once())
-            ->method("createData")
+        $this->daoCoreMock->expects($this->once())->method("createData")
             ->with($newPostData)
             ->willReturn($expect);
 
@@ -142,8 +141,7 @@ class PostModelTest extends TestCase
     #[DataProvider("getPostByOwnerTestDataProvider")]
     public function testGetPostByOwner(object|false|string $expect): void
     {
-        $this->daoCoreMock->expects($this->once())
-            ->method("getSingleData")
+        $this->daoCoreMock->expects($this->once())->method("getSingleData")
             ->with(
                 "*",
                 "WHERE post_owner=:post_owner",

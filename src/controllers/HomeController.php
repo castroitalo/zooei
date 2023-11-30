@@ -13,8 +13,11 @@ use src\core\ResponseCore;
  * 
  * @package src\controllers
  */
-class HomeController extends BaseControllerCore
+class HomeController
 {
+    // Base trait
+    use BaseControllerCore;
+
     /**
      * Renders website homepage
      *
@@ -33,7 +36,7 @@ class HomeController extends BaseControllerCore
             }
         }
 
-        $this->controllerView->render("home.view");
+        $this->app->viewCore->render("home.view");
     }
 
     /**
@@ -43,7 +46,7 @@ class HomeController extends BaseControllerCore
      */
     public function rulesPage(): void
     {
-        $this->controllerView->render("rules.view");
+        $this->app->viewCore->render("rules.view");
     }
 
     /**
@@ -55,7 +58,7 @@ class HomeController extends BaseControllerCore
     {
         $pixKey = $_ENV["SUP_PIX_KEY"];
 
-        $this->controllerView->render("support.view", ["pix_key" => $pixKey]);
+        $this->app->viewCore->render("support.view", ["pix_key" => $pixKey]);
     }
 
     /**
@@ -65,6 +68,6 @@ class HomeController extends BaseControllerCore
      */
     public function notFoundPage(): void
     {
-        $this->controllerView->render("not-found.view");
+        $this->app->viewCore->render("not-found.view");
     }
 }

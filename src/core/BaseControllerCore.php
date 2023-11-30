@@ -1,42 +1,41 @@
-<?php
+<?php 
 
 declare(strict_types=1);
 
 namespace src\core;
 
 /**
- * Class BaseControllerCore
+ * Trait BaseController
  * 
  * @package src\core
- * @abstract
  */
-class BaseControllerCore
+trait BaseControllerCore
 {
     /**
-     * Controller view manager
+     * App instance
      *
-     * @var ViewCore
+     * @var App
      */
-    protected ViewCore $controllerView;
+    public App $app;
 
     /**
-     * BaseControllerCore constructor
+     * BaseController
      */
     public function __construct()
     {
-        $this->controllerView = new ViewCore();
+        $this->app = new App();
     }
 
     /**
-     * Set new flash
+     * Set new flash message
      *
      * @param string $flashMessage
      * @param string $flashType
      * @return void
      */
-    public function setNewFlash(string $flashMessage, string $flashType): void
+    public function setNewFlash(string $flashMessage, string $flashType): void 
     {
-        (new SessionCore())->setSessionValue("flash_message", $flashMessage);
-        (new SessionCore())->setSessionValue("flash_type", $flashType);
+        $this->app->sessionCore->setSessionValue("flash_message", $flashMessage);
+        $this->app->sessionCore->setSessionValue("flash_type", $flashType);
     }
 }

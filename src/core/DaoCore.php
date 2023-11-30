@@ -1,5 +1,6 @@
 <?php
 
+
 declare(strict_types=1);
 
 namespace src\core;
@@ -34,10 +35,8 @@ class DaoCore
      * @param string $databaseTable
      * @param PDO|null $databaseConnection
      */
-    public function __construct(
-        string $databaseTable,
-        ?PDO $databaseConnection = null
-    ) {
+    public function __construct(string $databaseTable, ?PDO $databaseConnection = null)
+    {
         $this->databaseTable = $databaseTable;
         $this->databaseConnection = $databaseConnection ?? DatabaseCore::getDatabaseConnection();
     }
@@ -138,11 +137,8 @@ class DaoCore
      * @param string $whereParams
      * @return object|false|string
      */
-    public function getSingleData(
-        string $columns = "*",
-        string $where = "",
-        string $whereParams = ""
-    ): object|false|string {
+    public function getSingleData(string $columns = "*", string $where = "", string $whereParams = ""): object|false|string
+    {
         try {
             $sql = "SELECT {$columns} FROM {$this->databaseTable} {$where}";
             $stmt = $this->databaseConnection->prepare($sql);

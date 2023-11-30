@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace src\core;
 
+use src\models\BoardModel;
+use src\models\PostModel;
+
 /**
  * Class App 
  * 
@@ -23,7 +26,28 @@ class App
      *
      * @var SessionCore
      */
-    public SessionCore $session;
+    public SessionCore $sessionCore;
+
+    /**
+     * BoardModel instance
+     *
+     * @var BoardModel
+     */
+    public BoardModel $boardModel;
+
+    /**
+     * PostModel instance
+     *
+     * @var PostModel
+     */
+    public PostModel $postModel;
+
+    /**
+     * ViewCore instance
+     *
+     * @var ViewCore
+     */
+    public ViewCore $viewCore;
 
     /**
      * App constructor
@@ -31,6 +55,9 @@ class App
     public function __construct()
     {
         $this->router = new RouterCore();
-        $this->session = new SessionCore();
+        $this->sessionCore = new SessionCore();
+        $this->boardModel = new BoardModel();
+        $this->postModel = new PostModel();
+        $this->viewCore = new ViewCore();
     }
 }

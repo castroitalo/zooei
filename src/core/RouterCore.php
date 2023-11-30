@@ -132,7 +132,7 @@ class RouterCore
      * @param string $requestUri
      * @return RouteModel|null
      */
-    public function matchRoute(string $requestHttpMethod, string $requestUri): RouteModel|null 
+    public function matchRoute(string $requestHttpMethod, string $requestUri): RouteModel|null
     {
         foreach ($this->routes[$requestHttpMethod] as $route) {
             if ($route->getRouteUri() === $requestUri) {
@@ -149,7 +149,7 @@ class RouterCore
      * @param RouteModel $route
      * @return void
      */
-    public function executeRouteMiddlewareCallback(RouteModel $route): void 
+    public function executeRouteMiddlewareCallback(RouteModel $route): void
     {
         $middlewareClass = $route->getRouteMiddlewareCallback()[0];
         $middlewareMethod = $route->getRouteMiddlewareCallback()[1];
@@ -164,7 +164,7 @@ class RouterCore
      * @param RouteModel $route
      * @return void
      */
-    public function executeRouteControllerCallback(RouteModel $route): void 
+    public function executeRouteControllerCallback(RouteModel $route): void
     {
         $controllerClass = $route->getRouteControllerCallback()[0];
         $controllerMethod = $route->getRouteControllerCallback()[1];
@@ -178,12 +178,12 @@ class RouterCore
      *
      * @return void
      */
-    public function handleRequest(): void 
+    public function handleRequest(): void
     {
         $requestHttpMethod = RequestCore::getRequestHttpMethod();
         $requestUri = RequestCore::getRequestUri();
         $route = $this->matchRoute($requestHttpMethod, $requestUri);
-    
+
         // If the request URI doesn't exists
         if ($route === null) {
             ResponseCore::setResponseStatusCode(404);

@@ -59,10 +59,7 @@ class BoardModel
      * @param string $columns
      * @return object|false|string
      */
-    public function getBoardByUri(
-        string $boarUri,
-        string $columns = "*"
-    ): object|false|string {
+    public function getBoardByUri(string $boarUri, string $columns = "*"): object|false|string {
         $where = "WHERE board_uri=:board_uri";
         $whereParams = "board_uri={$boarUri}";
         $board = $this->dao->getSingleData($columns, $where, $whereParams);
