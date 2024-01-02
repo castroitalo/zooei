@@ -1,7 +1,9 @@
 version: "3.0"
 
 services:
-  database:
+  
+  # Zooei database
+  mariadb:
     image: mariadb:10.4.31
     environment:
       - MYSQL_USER=root
@@ -9,14 +11,16 @@ services:
       - MYSQL_DATABASE=zooei
     ports:
       - 3306:3306
-  web:
+  
+  # Zooei app
+  app:
     image: zooei/stable:1.0
     volumes:
       - ./:/var/www/html
     ports:
       - 8080:80
     links:
-      - database
+      - mariadb
     depends_on:
-      - database
+      - mariadb
     tty: true
