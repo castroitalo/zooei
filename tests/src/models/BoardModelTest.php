@@ -18,8 +18,8 @@ use stdClass;
  * 
  * @package tests\models
  */
-#[RequiresPhp("8.2.13")]
-#[RequiresPhpunit("10.4")]
+#[RequiresPhp("8.2")]
+#[RequiresPhpunit("10")]
 class BoardModelTest extends TestCase
 {
     /**

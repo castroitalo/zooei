@@ -16,8 +16,8 @@ use stdClass;
  * 
  * @package src\core
  */
-#[RequiresPhp("8.2.12")]
-#[RequiresPhpunit("10.4")]
+#[RequiresPhp("8.2")]
+#[RequiresPhpunit("10")]
 class RouterCoreTest extends TestCase
 {
     /**
