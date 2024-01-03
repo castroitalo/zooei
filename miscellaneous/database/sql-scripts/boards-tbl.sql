@@ -39,6 +39,8 @@ INSERT INTO zooei.boards_tbl (
     ("intr", "/design-grafico", "Design Gráfico"),
     ("intr", "/musica", "Música"),
     ("intr", "/faca-voce-mesmo", "Faça Você Mesmo"),
+    ("intr", "/fut", "Futebol"),
+    ("intr", "/bsk", "Basket"),
     ("brl", "/br", "Brasil (BR)"),
     ("brl", "/ac", "Acre (AC)"),
     ("brl", "/al", "Alagoas (AL)"),

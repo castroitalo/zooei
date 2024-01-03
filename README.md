@@ -1,5 +1,5 @@
 # Zooei
-O maior imageboard brasileiro.
+Zooei é um site [imageboard](https://pt.wikipedia.org/wiki/Imageboard) onde as pessoas podem discutir interesses de forma anônima desde que não quebre nenhuma regra.
 
 ![zooei](https://github.com/devcastroitalo/zooei/blob/main/miscellaneous/images/print_homepage.png)
 
